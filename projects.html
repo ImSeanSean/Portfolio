@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sean Rad P. Alberto | Portfolio</title>
+    <link rel="stylesheet" href="projects.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="buttons">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a class="active" href="/projects.html">Projects</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </nav>
+    <section id="home">
+      <h1>My Projects</h1>
+
+      <div class="slider">
+        <div class="slides">
+          <div class="slide">
+            <img class="slide" src="projects/1.png" />
+
+          </div>
+          <div class="slide">
+            <img class="slide" src="projects/2.png" />
+          </div>
+          <div class="slide">
+            <img class="slide" src="projects/3.png" /> 
+          </div>
+          <div class="slide">
+            <img class="slide" src="projects/4.png" /> 
+          </div>
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094</button>
+        <button class="next" onclick="nextSlide()">&#10095</button>
+      </div>
+    </section>
+    <script src="projects.js"></script>
+  </body>
+</html>

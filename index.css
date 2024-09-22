@@ -1,0 +1,66 @@
+section {
+  margin: auto;
+  height: 90vh;
+  width: 80vw;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section h1 {
+  font-size: 40px;
+  color: #ff4d5a;
+}
+
+section label {
+  font-size: 15px;
+  color: #d0d0d0;
+}
+
+section p {
+  font-size: 20px;
+  text-align: center;
+}
+
+/*Navbar*/
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #1a1a1a;
+}
+
+nav {
+  background-color: #272727;
+  color: white;
+  height: 6vh;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+nav .buttons {
+  display: flex;
+  gap: 2vw;
+  margin-right: 3vw;
+}
+
+nav .buttons a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+nav .buttons .active {
+  color: #ff4d5a;
+}
+
+nav .buttons a:hover {
+  color: #ff4d5a;
+}

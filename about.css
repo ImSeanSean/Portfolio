@@ -1,0 +1,106 @@
+section {
+  margin: auto;
+  height: 94vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section h1 {
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  font-size: 40px;
+  color: #ff4d5a;
+}
+
+section label {
+  font-size: 15px;
+  color: #d0d0d0;
+}
+
+section p {
+  font-size: 20px;
+}
+
+section .information {
+  display: grid;
+  grid-template-columns: 5.5fr 4.5fr;
+  padding: 0 3vw;
+}
+
+section .personal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+section .personal .profile {
+  height: 50vh;
+}
+
+section .skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+section .skills .skill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #272727;
+  border-radius: 20px;
+  margin: auto;
+  width: 80%;
+  padding: 1vw;
+}
+
+section .skills .skill h3 {
+  font-size: 35px;
+}
+
+section .skills .skill img {
+  height: 35px;
+}
+
+/*Navbar*/
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #1a1a1a;
+}
+
+nav {
+  background-color: #272727;
+  color: white;
+  height: 6vh;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+nav .buttons {
+  display: flex;
+  gap: 2vw;
+  margin-right: 3vw;
+}
+
+nav .buttons a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+nav .buttons .active {
+  color: #ff4d5a;
+}
+
+nav .buttons a:hover {
+  color: #ff4d5a;
+}
