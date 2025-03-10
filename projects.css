@@ -99,3 +99,45 @@ nav .buttons .active {
 nav .buttons a:hover {
   color: #ff4d5a;
 }
+/*Split*/
+.split {
+  padding-inline: 5vw;
+  display: flex;
+  gap: 2vw;
+  /* display: grid;
+  grid-template-columns: 9fr 1fr; */
+  justify-content: center;
+}
+.details {
+  width: 20w;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.details h1 {
+  padding: 0;
+}
+.details p {
+  font-size: 18px;
+}
+/*Skill*/
+.skill-list {
+  display: flex;
+  gap: 10px;
+}
+.skill {
+  display: flex;
+  gap: 10px;
+  background-color: #272727;
+  border-radius: 20px;
+  padding: 1vw;
+}
+
+.skill h3 {
+  font-size: 20px;
+}
+
+.skill img {
+  display: block;
+  height: 20px;
+}
