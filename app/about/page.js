@@ -1,14 +1,86 @@
-const skills = [
-  ["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JavaScript"],
-  ["typescript.png", "TypeScript"], ["4.png", "Angular"], ["7.png", "Java"],
-  ["5.png", "PHP"], ["6.png", "Laravel"], ["8.png", "C"], ["9.png", "Python"],
-  ["dart.png", "Dart"], ["flutter.png", "Flutter"],
+const skillGroups = [
+  {
+    id: "frontend",
+    name: "Frontend",
+    skills: [["typescript.png", "TypeScript"], ["4.png", "Angular"], [null, "React"], [null, "Next.js"]],
+  },
+  {
+    id: "backend-systems",
+    name: "Backend & Systems",
+    skills: [["9.png", "Python"], ["6.png", "Laravel"], [null, "Node.js"], [null, "Express.js"], [null, "Django"]],
+  },
+  {
+    id: "cloud-automation",
+    name: "Cloud & Automation",
+    skills: [[null, "Azure"], [null, "WordPress"], [null, "Power Automate"], [null, "n8n"], [null, "Git & CI/CD"]],
+  },
+  {
+    id: "ai-data",
+    name: "AI & Data",
+    skills: [[null, "Azure OpenAI"], [null, "Gemini"], [null, "RAG"]],
+  },
+  {
+    id: "databases",
+    name: "Databases",
+    skills: [["mysql.png", "MySQL"], [null, "Microsoft SQL Server"]],
+  },
+  {
+    id: "mobile",
+    name: "Mobile",
+    skills: [["flutter.png", "Flutter"]],
+  },
 ];
 
 const skillImageSizes = {
   "dart.png": [300, 300],
   "typescript.png": [512, 512],
 };
+
+const experience = [
+  {
+    title: "Software Engineer",
+    company: "Planate Management Group",
+    period: "Jul 2026 — Present",
+    arrangement: "Hybrid",
+    current: true,
+    details: [
+      "Develop and maintain enterprise software using modern web technologies, APIs, cloud services, and scalable architectures.",
+      "Build AI-powered systems and automation solutions that improve internal processes and operational efficiency.",
+      "Contribute to Azure OpenAI, retrieval-augmented generation (RAG), and enterprise knowledge-integration initiatives.",
+      "Design integrations and automated workflows across internal and third-party enterprise platforms.",
+      "Support DevOps practices including Git workflows, CI/CD, deployments, environment management, and application optimization.",
+      "Partner with stakeholders and cross-functional teams to turn business requirements into scalable technical solutions.",
+    ],
+  },
+  {
+    title: "Software Engineer Intern",
+    company: "Planate Management Group",
+    period: "Feb 2026 — Jun 2026",
+    arrangement: "Hybrid",
+    details: [
+      "Developed and maintained WordPress solutions, including custom themes, plugins, and content-management enhancements.",
+      "Contributed to AI-driven systems supporting automation and internal business workflows.",
+      "Designed Microsoft Power Automate workflows to streamline business operations.",
+      "Assisted with version control, deployments, and DevOps processes for internal applications.",
+      "Collaborated with cross-functional teams to deliver solutions aligned with organizational requirements.",
+    ],
+  },
+  {
+    title: "Full-Stack Developer",
+    company: "Rooche Digital",
+    period: "Mar 2025 — Feb 2026",
+    arrangement: "Remote",
+    detailsAbove: true,
+    details: [
+      "Delivered full-stack web solutions for multiple clients using Next.js, Laravel, and cloud-based services.",
+      "Integrated Facebook Ads and third-party APIs for marketing automation and analytics workflows.",
+      "Built a Next.js and Cloudflare passport-photo generation system with optimized image processing and deployment.",
+      "Developed CRM and marketing automation solutions using GoHighLevel, n8n workflows, and Laravel.",
+      "Contributed to a community-management platform for game studios using React and Express.js.",
+      "Worked with stakeholders to translate business requirements into scalable, automated solutions.",
+    ],
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -25,27 +97,54 @@ export default function AboutPage() {
             <div className="profile-frame">
               <img alt="Sean Rad P. Alberto" className="profile" height="1954" src="/profile.png" width="2150" />
             </div>
-            <p className="about-copy">
-              An ambitious and highly-motivated Computer Science student who
-              excels not only in software development, but also in leadership and
-              project management. Has practical experience in using a variety of
-              programming languages and frameworks and in leading multiple
-              projects. Flexible and can easily adapt to new environment and
-              programming languages and frameworks.
-            </p>
+            <div className="about-intro">
+              <p className="eyebrow">Software engineer</p>
+              <h2>I build software that solves real problems.</h2>
+              <p className="about-lede">
+                I design and build full-stack applications, workflow automation, and AI-powered systems that make work simpler and ideas tangible.
+              </p>
+              <p className="about-copy">
+                I bring technical depth, curiosity, and a practical approach to every project—whether I&apos;m contributing to a team or building a custom solution for a client.
+              </p>
+              <ul className="about-highlights" aria-label="Core strengths">
+                <li>Full-stack development</li>
+                <li>Workflow automation</li>
+                <li>AI-powered systems</li>
+              </ul>
+              <a className="about-cta" href="/contact">Let&apos;s work together <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </div>
       </section>
       <section className="experience-section snap-section">
-        <div className="experience-summary">
-          <p className="eyebrow">Experience</p>
-          <h2>Building Production Systems Across AI, Automation &amp; Full-Stack Development</h2>
-          <p>Hands-on professional experience delivering full-stack applications, AI-powered systems, workflow automation, integrations, and DevOps collaboration.</p>
-          <ul>
-            <li>Software Engineer · July 2026 – Present</li>
-            <li>Software Engineer Intern · February 2026 – June 2026</li>
-            <li>Full-Stack Developer · March 2025 – February 2026</li>
-          </ul>
+        <div className="experience-panel">
+          <div className="experience-intro">
+            <p className="eyebrow">Experience</p>
+            <h2>Building production systems, one role at a time.</h2>
+            <p>Hands-on work across full-stack applications, AI-powered systems, workflow automation, integrations, and DevOps collaboration.</p>
+            <div className="education-credential">
+              <p className="eyebrow">Education</p>
+              <p><strong>Bachelor of Science in Computer Science</strong><span>Gordon College · Magna Cum Laude · Jul 2026</span></p>
+            </div>
+          </div>
+          <ol className="experience-timeline">
+            {experience.map(({ title, company, period, arrangement, current, detailsAbove, details }) => (
+              <li className={`experience-role${current ? " experience-role-current" : ""}`} key={title} tabIndex={0}>
+                <div className="experience-role-meta">
+                  <p>{period}</p>
+                  {current && <span>Current</span>}
+                </div>
+                <h3>{title}</h3>
+                <p className="experience-company">{company} · {arrangement}</p>
+                <div className={`experience-role-details${detailsAbove ? " experience-role-details-above" : ""}`}>
+                  <p>What I worked on</p>
+                  <ul>
+                    {details.map((detail) => <li key={detail}>{detail}</li>)}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
       <section className="skills-section snap-section">
@@ -55,16 +154,27 @@ export default function AboutPage() {
             <h2>What I Build With</h2>
             <p>Languages and frameworks I use to turn ideas into working products.</p>
           </div>
-          <div className="skills">
-            {skills.map(([image, name], index) => {
-              const [width, height] = skillImageSizes[image] ?? [1000, 1000];
-              return (
-                <div className="skill skill-reveal" key={name} style={{ "--item-index": index }}>
-                  <img alt="" height={height} src={`/skills/${image}`} width={width} />
-                  <h3>{name}</h3>
+          <div className="skill-groups">
+            {skillGroups.map(({ id, name, skills }, groupIndex) => (
+              <section className="skill-group" key={id} aria-labelledby={`skill-group-${id}`}>
+                <h3 id={`skill-group-${id}`}>{name}</h3>
+                <div className="skills">
+                  {skills.map(([image, skillName], index) => {
+                    const [width, height] = skillImageSizes[image] ?? [1000, 1000];
+                    return (
+                      <div className="skill skill-reveal" key={skillName} style={{ "--item-index": groupIndex * 5 + index }}>
+                        {image ? (
+                          <img alt="" height={height} src={`/skills/${image}`} width={width} />
+                        ) : (
+                          <span aria-hidden="true" className="skill-marker">{"</>"}</span>
+                        )}
+                        <h4>{skillName}</h4>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </section>
+            ))}
           </div>
         </div>
       </section>
