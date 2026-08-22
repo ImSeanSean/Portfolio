@@ -1,15 +1,27 @@
+import Link from "next/link";
+
 export default function HomePage() {
   return (
     <section className="home-page">
-      <p className="home-intro">Hi, I am</p>
+      <p className="home-intro">Hi, I&apos;m</p>
       <h1>Sean Rad P. Alberto</h1>
-      <p>
-        I&apos;m a Computer Science Student in Gordon College. I enjoy programming
-        and life. I am still on the path of discovering the CS Field that I
-        truly love. I am currently adept in Full-Stack Web Development,
-        knowledgeable in Data Science &amp; Machine Learning, and dabbling on
-        Cyber Security &amp; CTF.
+      <p className="home-role">
+        Software Engineer specializing in AI, Automation &amp; Full-Stack Systems
       </p>
+      <p className="home-summary">
+        I build AI-powered applications, intelligent automation, and full-stack
+        systems that solve real business problems—from RAG-based assistants and
+        enterprise chatbots to workflow automation and data-driven platforms.
+      </p>
+      <div className="hero-actions">
+        <Link className="button button-primary" href="/projects">View Projects</Link>
+        <a className="button button-secondary" download href="/sean-rad-alberto-resume.pdf">Download Resume</a>
+      </div>
+      <div aria-label="Professional links" className="hero-links">
+        <a href="https://www.linkedin.com/in/seanalberto/" rel="noreferrer" target="_blank">LinkedIn</a>
+        <a href="https://github.com/ImSeanSean" rel="noreferrer" target="_blank">GitHub</a>
+        <a href="mailto:seanradalberto@gmail.com">Email</a>
+      </div>
     </section>
   );
 }

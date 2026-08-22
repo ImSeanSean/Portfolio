@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const projects = [
-  { image: "1.png", width: 1919, height: 982, title: "Happy Tails", description: "A pet adoption website made with HTML, CSS, and JavaScript. Utilized JavaScript and JSON for displaying various information per animal.", skills: [["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JS"]] },
-  { image: "2.png", width: 1919, height: 983, title: "Chattr", description: "A Real Time Messaging Website made with Angular + PHP (Ratchet).", skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]] },
+  { image: "4.png", width: 1920, height: 1080, title: "SDO Olongapo ICT Hub", description: "A Web & Mobile Development Project made for SDO Olongapo ICT Department. Developed the entire mobile application for the project and assisted in optimizing the Express.js backend.", skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
   { image: "3.png", width: 1919, height: 981, title: "AppointMe", description: "An Appointment Queueing System for Gordon College CCS Department. A group project where I led my team as a project manager. Aside from programming experience, this project taught me project management, leadership, and collaboration.", skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
   { image: "5.png", width: 1920, height: 996, title: "SubTask", description: "A Task Management Website created using Laravel. Tasks can have a list of subtasks. Features include deadline reminders, a robust details panel, and analytics.", skills: [["6.png", "Laravel"], ["5.png", "PHP"], ["mysql.png", "MySQL"]] },
-  { image: "4.png", width: 1920, height: 1080, title: "SDO Olongapo ICT Hub", description: "A Web & Mobile Development Project made for SDO Olongapo ICT Department. Developed the entire mobile application for the project and assisted in optimizing the Express.js backend.", skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
+  { image: "2.png", width: 1919, height: 983, title: "Chattr", description: "A Real Time Messaging Website made with Angular + PHP (Ratchet).", skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]] },
+  { image: "1.png", width: 1919, height: 982, title: "Happy Tails", description: "A pet adoption website made with HTML, CSS, and JavaScript. Utilized JavaScript and JSON for displaying various information per animal.", skills: [["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JS"]] },
   { image: "6.png", width: 1615, height: 906, title: "Payroll Management System", description: "A Java Swing Application created in NetBeans. The program is a payroll manager that utilizes an SQL database to manage payroll.", skills: [["7.png", "Java"], ["mysql.png", "MySQL"]] },
 ];
 
@@ -20,6 +20,8 @@ export default function ProjectsPage() {
   const [projectIndex, setProjectIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isProjectSummaryVisible, setIsProjectSummaryVisible] = useState(true);
+  const projectsPageRef = useRef(null);
   const project = projects[projectIndex];
 
   useEffect(() => {
@@ -40,6 +42,20 @@ export default function ProjectsPage() {
     );
     return () => clearTimeout(timer);
   }, [isPaused, prefersReducedMotion, projectIndex]);
+
+  useEffect(() => {
+    const page = projectsPageRef.current;
+    const carousel = page?.querySelector(".projects-carousel-section");
+    if (!page || !carousel) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsProjectSummaryVisible(!entry.isIntersecting),
+      { root: page, threshold: 0.01 },
+    );
+
+    observer.observe(carousel);
+    return () => observer.disconnect();
+  }, []);
 
   const changeProject = (direction) => {
     setProjectIndex((index) => (index + direction + projects.length) % projects.length);
@@ -64,12 +80,35 @@ export default function ProjectsPage() {
   };
 
   return (
-    <section className="projects-page">
-      <div className="section-heading projects-heading">
-        <p className="eyebrow">Selected work</p>
-        <h1>My Projects</h1>
+    <div className="projects-page snap-scroll" ref={projectsPageRef}>
+      <div className="sticky-page-heading">
+        <div className="sticky-page-heading-content">
+          <p className="eyebrow">Selected work</p>
+          <h1>My Projects</h1>
+          <p aria-hidden={!isProjectSummaryVisible} className={isProjectSummaryVisible ? "project-summary" : "project-summary is-hidden"}>Software built around real people, workflows, and information.</p>
+        </div>
       </div>
-      <div aria-label="Projects carousel" className="slider" role="region">
+      <section className="project-directions-section snap-section">
+        <div className="project-directions">
+          <article className="project-direction-copy">
+            <p className="eyebrow">AI Engineering</p>
+            <h2>Useful, context-aware AI</h2>
+            <p>RAG-based assistants, enterprise knowledge retrieval, and conversational experiences designed around real workflows.</p>
+          </article>
+          <article className="project-direction-copy">
+            <p className="eyebrow">Automation</p>
+            <h2>Connected, repeatable processes</h2>
+            <p>Workflow automation and system integrations that reduce manual work across internal and third-party platforms.</p>
+          </article>
+          <article className="project-direction-copy">
+            <p className="eyebrow">Software Engineering</p>
+            <h2>Full-stack systems</h2>
+            <p>Product-focused applications including Tulai, DarwinKPI, and the SDO Olongapo ICT Hub.</p>
+          </article>
+        </div>
+      </section>
+      <section aria-label="Projects carousel" className="projects-carousel-section snap-section" role="region">
+      <div className="slider">
         <div className="project-meta">
           <p><span>{String(projectIndex + 1).padStart(2, "0")}</span> / {String(projects.length).padStart(2, "0")}</p>
           <button
@@ -123,6 +162,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </div>
   );
 }

@@ -46,13 +46,30 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
   margin: auto;
 }
 
-.home-page { height: 90vh; justify-content: center; width: 80vw; }
+.home-page { gap: 1.1rem; height: 90vh; justify-content: center; max-width: 55rem; padding: 2rem 0; width: 80vw; }
 .home-page h1, .contact-page h1, .section-heading h1 { color: #ff4d5a; font-size: 40px; }
 .home-intro { color: #d0d0d0; font-size: 15px; }
-.home-page p { font-size: 20px; text-align: center; }
+.home-page p { text-align: center; }
+.home-role { font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.35; }
+.home-summary { color: #d0d0d0; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.65; max-width: 48rem; }
+.hero-actions, .hero-links { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+.button { border: 1px solid #ff4d5a; color: white; font-weight: 700; padding: .8rem 1.1rem; text-decoration: none; transition: background-color .2s ease, color .2s ease, transform .2s ease; }
+.button:hover { transform: translateY(-2px); }
+.button-primary { background: #ff4d5a; }
+.button-primary:hover { background: #ff6a74; color: #1a1a1a; }
+.button-secondary:hover { background: #ff4d5a; color: #1a1a1a; }
+.hero-links { gap: 1rem; font-size: .9rem; }
+.hero-links a { color: #d0d0d0; }
+.hero-links a:hover { color: #ff4d5a; }
 
-.about-page { min-height: calc(100dvh - 6vh); }
-.projects-page { min-height: 94vh; }
+.snap-scroll { height: calc(100dvh - 6vh); overflow-y: auto; scroll-snap-type: y mandatory; width: 100%; }
+.snap-section { align-items: center; display: flex; flex: 0 0 auto; justify-content: center; min-height: calc(100dvh - 6vh); scroll-snap-align: start; scroll-snap-stop: always; width: 100%; }
+.sticky-page-heading { align-self: flex-start; flex: 0 0 0; height: 0; left: 0; overflow: visible; position: sticky; top: 0; width: 100%; z-index: 2; }
+.sticky-page-heading-content { padding: clamp(1.5rem, 4vh, 3rem) 5vw; width: min(100%, 36rem); }
+.sticky-page-heading h1 { color: #ff4d5a; font-size: clamp(2rem, 3vw, 2.5rem); margin-top: .25rem; }
+.project-summary { color: #d0d0d0; line-height: 1.5; margin-top: .75rem; max-width: 30rem; transition: opacity .25s ease, transform .25s ease, visibility .25s; }
+.project-summary.is-hidden { opacity: 0; transform: translateY(-.35rem); visibility: hidden; }
+.about-profile-section { flex-direction: column; justify-content: center; padding-top: 7rem; }
 .section-heading { align-self: stretch; margin: 4vh auto 3vh; padding: 0 5vw; width: 100%; }
 .section-heading h1 { margin-top: 4px; }
 .eyebrow { color: #ff4d5a; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
@@ -63,6 +80,10 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 .about-copy { animation: rise-in .7s .12s ease-out both; line-height: 1.65; max-width: 40rem; overflow-wrap: anywhere; width: 100%; }
 .personal p, .details p { font-size: 18px; }
 .skills-panel { align-self: center; animation: rise-in .7s .18s ease-out both; min-width: 0; }
+.experience-summary { border-left: 3px solid #ff4d5a; max-width: 50rem; padding-left: clamp(1rem, 3vw, 2.5rem); }
+.experience-summary h2 { font-size: clamp(2rem, 4.5vw, 4.25rem); line-height: 1.05; margin: .5rem 0 1.25rem; }
+.experience-summary > p:not(.eyebrow) { color: #d0d0d0; line-height: 1.5; }
+.experience-summary ul { color: #d0d0d0; display: grid; gap: .4rem; list-style: none; margin-top: 1rem; }
 .skills-intro { margin-bottom: 1.5rem; }
 .skills-intro h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); margin: .25rem 0 .5rem; }
 .skills-intro p:last-child { color: #d0d0d0; line-height: 1.5; max-width: 26rem; }
@@ -74,8 +95,16 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 .skill img { display: block; height: 25px; width: auto; }
 .skill h3 { min-width: 0; overflow-wrap: anywhere; }
 .skills .skill h3 { font-size: clamp(1rem, 1.3vw, 1.45rem); }
+.skills-section { padding: 3rem 5vw; }
+.skills-section .skills-panel { max-width: 58rem; width: 100%; }
 
 .projects-heading { margin-bottom: 1.5vh; }
+.project-directions-section { padding: 9rem 10vw 3rem; }
+.project-directions { display: grid; gap: clamp(2rem, 5vw, 5rem); grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1280px; width: 100%; }
+.project-direction-copy { border-left: 3px solid #ff4d5a; padding-left: clamp(1rem, 2vw, 1.75rem); }
+.project-direction-copy h2 { font-size: clamp(1.7rem, 2.6vw, 2.85rem); line-height: 1.05; margin: .6rem 0 1.25rem; }
+.project-direction-copy > p:last-child { color: #d0d0d0; font-size: clamp(1rem, 1.25vw, 1.2rem); line-height: 1.6; }
+.projects-carousel-section { align-items: stretch; min-height: max-content; padding: 3rem 0; }
 .slider { margin: auto; max-width: 1300px; overflow: hidden; padding: 0 5vw 4vh; position: relative; width: 100%; }
 .project-meta { align-items: center; color: #d0d0d0; display: flex; font-size: 14px; justify-content: space-between; margin: 0 auto 1rem; max-width: 1080px; }
 .project-meta span { color: #ff4d5a; font-weight: 700; }
@@ -127,16 +156,23 @@ h1, h2, h3 { text-wrap: balance; }
   .information { grid-template-columns: 1fr; }
 }
 
-@media (min-width: 901px) {
-  .about-page { height: calc(100dvh - 6vh); overflow: hidden; }
-  .about-page .information { flex: 1; min-height: 0; }
-}
-
 @media (max-width: 768px) {
+  .navbar { height: auto; justify-content: center; min-height: 3rem; }
+  .buttons { gap: 1.1rem; margin-right: 0; padding: .8rem 1rem; }
   .information, .split { grid-template-columns: 1fr; flex-direction: column; }
   .information { display: flex; }
   .section-heading { margin-top: 2rem; padding: 0 7vw; }
   .information, .slider { padding-inline: 7vw; }
+  .snap-scroll { height: calc(100dvh - 3rem); }
+  .snap-section { min-height: calc(100dvh - 3rem); }
+  .about-profile-section { justify-content: flex-start; }
+  .about-profile-section .information { padding-bottom: 3rem; padding-top: 4rem; }
+  .experience-section, .project-directions-section { padding-inline: 7vw; }
+  .sticky-page-heading-content { padding-inline: 7vw; }
+  .experience-summary, .project-direction-copy { padding-left: 1rem; }
+  .experience-summary h2 { font-size: clamp(2rem, 10vw, 3rem); }
+  .project-directions { grid-template-columns: 1fr; }
+  .project-direction-copy h2 { font-size: clamp(2rem, 10vw, 3rem); }
   .project-image { height: auto; max-width: 100%; }
   .details { padding-bottom: 2rem; }
   .slider-control { top: 43%; }

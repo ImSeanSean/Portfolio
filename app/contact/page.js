@@ -1,8 +1,8 @@
 const contacts = [
   { image: "1.png", label: "Sean Alberto", href: "https://web.facebook.com/seanrad.alberto.7/" },
   { image: "2.png", label: "ImSeanSean", href: "https://github.com/ImSeanSean" },
-  { image: "3.png", label: "Sean Rad P. Alberto", href: "https://www.linkedin.com/in/sean-rad-alberto/" },
-  { image: "4.png", label: "202210012@gordoncollege.edu.ph", href: "mailto:202210012@gordoncollege.edu.ph" },
+  { image: "3.png", label: "Sean Alberto", href: "https://www.linkedin.com/in/seanalberto/" },
+  { image: "4.png", label: "seanradalberto@gmail.com", href: "mailto:seanradalberto@gmail.com" },
   { image: "5.png", label: "09662903605", href: "tel:09662903605" },
 ];
 
