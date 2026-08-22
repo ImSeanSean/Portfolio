@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const projects = [
   { image: "4.png", width: 1920, height: 1080, title: "SDO Olongapo ICT Hub", description: "A Web & Mobile Development Project made for SDO Olongapo ICT Department. Developed the entire mobile application for the project and assisted in optimizing the Express.js backend.", skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
   { image: "3.png", width: 1919, height: 981, title: "AppointMe", description: "An Appointment Queueing System for Gordon College CCS Department. A group project where I led my team as a project manager. Aside from programming experience, this project taught me project management, leadership, and collaboration.", skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
@@ -124,7 +126,7 @@ export default function ProjectsPage() {
         </div>
         <div className="split" key={project.title}>
           <div className="project-visual">
-            <img alt={`${project.title} project preview`} className="project-image" height={project.height} src={`/projects/${project.image}`} width={project.width} />
+            <img alt={`${project.title} project preview`} className="project-image" height={project.height} src={assetPath(`/projects/${project.image}`)} width={project.width} />
           </div>
           <div className="details">
             <h2>{project.title}</h2>
@@ -133,7 +135,7 @@ export default function ProjectsPage() {
                 const [width, height] = skillImageSizes[image] ?? [1000, 1000];
                 return (
                   <div className="skill" key={name}>
-                    <img alt="" height={height} src={`/skills/${image}`} width={width} />
+                    <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
                     <h3>{name}</h3>
                   </div>
                 );

@@ -1,3 +1,5 @@
+const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const contacts = [
   { image: "1.png", label: "Sean Alberto", href: "https://web.facebook.com/seanrad.alberto.7/" },
   { image: "2.png", label: "ImSeanSean", href: "https://github.com/ImSeanSean" },
@@ -17,7 +19,7 @@ export default function ContactPage() {
       <div className="contact-list">
         {contacts.map((contact) => (
           <a className="contact" href={contact.href} key={contact.label} rel="noreferrer" target={contact.href.startsWith("http") ? "_blank" : undefined}>
-            <img alt="" height="1000" src={`/contacts/${contact.image}`} width="1000" />
+            <img alt="" height="1000" src={assetPath(`/contacts/${contact.image}`)} width="1000" />
             <span>{contact.label}</span>
             <span aria-hidden="true" className="contact-arrow">↗</span>
           </a>

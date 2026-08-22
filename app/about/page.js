@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const skillGroups = [
   {
     id: "frontend",
@@ -95,7 +99,7 @@ export default function AboutPage() {
         <div className="information">
           <div className="personal">
             <div className="profile-frame">
-              <img alt="Sean Rad P. Alberto" className="profile" height="1954" src="/profile.png" width="2150" />
+              <img alt="Sean Rad P. Alberto" className="profile" height="1954" src={assetPath("/profile.png")} width="2150" />
             </div>
             <div className="about-intro">
               <p className="eyebrow">Software engineer</p>
@@ -111,7 +115,7 @@ export default function AboutPage() {
                 <li>Workflow automation</li>
                 <li>AI-powered systems</li>
               </ul>
-              <a className="about-cta" href="/contact">Let&apos;s work together <span aria-hidden="true">→</span></a>
+              <Link className="about-cta" href="/contact">Let&apos;s work together <span aria-hidden="true">→</span></Link>
             </div>
           </div>
         </div>
@@ -164,7 +168,7 @@ export default function AboutPage() {
                     return (
                       <div className="skill skill-reveal" key={skillName} style={{ "--item-index": groupIndex * 5 + index }}>
                         {image ? (
-                          <img alt="" height={height} src={`/skills/${image}`} width={width} />
+                          <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
                         ) : (
                           <span aria-hidden="true" className="skill-marker">{"</>"}</span>
                         )}

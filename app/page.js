@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export default function HomePage() {
   return (
     <section className="home-page">
@@ -15,7 +17,7 @@ export default function HomePage() {
       </p>
       <div className="hero-actions">
         <Link className="button button-primary" href="/projects">View Projects</Link>
-        <a className="button button-secondary" download href="/sean-rad-alberto-resume.pdf">Download Resume</a>
+        <a className="button button-secondary" download href={assetPath("/sean-rad-alberto-resume.pdf")}>Download Resume</a>
       </div>
       <div aria-label="Professional links" className="hero-links">
         <a href="https://www.linkedin.com/in/seanalberto/" rel="noreferrer" target="_blank">LinkedIn</a>
