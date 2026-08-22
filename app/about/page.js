@@ -6,27 +6,27 @@ const skillGroups = [
   {
     id: "frontend",
     name: "Frontend",
-    skills: [["typescript.png", "TypeScript"], ["4.png", "Angular"], [null, "React"], [null, "Next.js"]],
+    skills: [["typescript.png", "TypeScript"], ["4.png", "Angular"], ["react.svg", "React"], ["nextjs.svg", "Next.js"]],
   },
   {
     id: "backend-systems",
     name: "Backend & Systems",
-    skills: [["9.png", "Python"], ["6.png", "Laravel"], [null, "Node.js"], [null, "Express.js"], [null, "Django"]],
+    skills: [["9.png", "Python"], ["6.png", "Laravel"], ["nodejs.svg", "Node.js"], ["express.svg", "Express.js"], ["django.svg", "Django"]],
   },
   {
     id: "cloud-automation",
     name: "Cloud & Automation",
-    skills: [[null, "Azure"], [null, "WordPress"], [null, "Power Automate"], [null, "n8n"], [null, "Git & CI/CD"]],
+    skills: [["azure.svg", "Azure"], ["wordpress.svg", "WordPress"], ["power-automate.svg", "Power Automate"], ["n8n.svg", "n8n"], ["git.svg", "Git & CI/CD"]],
   },
   {
     id: "ai-data",
     name: "AI & Data",
-    skills: [[null, "Azure OpenAI"], [null, "Gemini"], [null, "RAG"]],
+    skills: [["azure.svg", "Azure OpenAI"], ["gemini.svg", "Gemini"], [null, "RAG"]],
   },
   {
     id: "databases",
     name: "Databases",
-    skills: [["mysql.png", "MySQL"], [null, "Microsoft SQL Server"]],
+    skills: [["mysql.png", "MySQL"], ["microsoft-sql-server.svg", "Microsoft SQL Server"]],
   },
   {
     id: "mobile",
