@@ -9,13 +9,17 @@ const contacts = [
 export default function ContactPage() {
   return (
     <section className="contact-page">
-      <h1>Contacts</h1>
-      <p>You can reach out to me through</p>
+      <div className="section-heading contact-heading">
+        <p className="eyebrow">Get in touch</p>
+        <h1>Let&apos;s Connect</h1>
+        <p className="contact-intro">Choose the channel that works best for you.</p>
+      </div>
       <div className="contact-list">
         {contacts.map((contact) => (
           <a className="contact" href={contact.href} key={contact.label} rel="noreferrer" target={contact.href.startsWith("http") ? "_blank" : undefined}>
-            <img alt="" src={`/contacts/${contact.image}`} />
-            <h4>{contact.label}</h4>
+            <img alt="" height="1000" src={`/contacts/${contact.image}`} width="1000" />
+            <span>{contact.label}</span>
+            <span aria-hidden="true" className="contact-arrow">↗</span>
           </a>
         ))}
       </div>

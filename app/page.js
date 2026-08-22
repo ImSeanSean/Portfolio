@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
     <section className="home-page">
-      <label>Hi, I am</label>
+      <p className="home-intro">Hi, I am</p>
       <h1>Sean Rad P. Alberto</h1>
       <p>
         I&apos;m a Computer Science Student in Gordon College. I enjoy programming
