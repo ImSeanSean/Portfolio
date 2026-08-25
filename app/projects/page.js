@@ -5,8 +5,36 @@ import { useEffect, useRef, useState } from "react";
 const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 
 const projects = [
-  { image: "4.png", width: 1920, height: 1080, title: "SDO Olongapo ICT Hub", description: "A Web & Mobile Development Project made for SDO Olongapo ICT Department. Developed the entire mobile application for the project and assisted in optimizing the Express.js backend.", skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
-  { image: "3.png", width: 1919, height: 981, title: "AppointMe", description: "An Appointment Queueing System for Gordon College CCS Department. A group project where I led my team as a project manager. Aside from programming experience, this project taught me project management, leadership, and collaboration.", skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]] },
+  {
+    image: "4.png",
+    width: 1920,
+    height: 1080,
+    title: "SDO Olongapo ICT Hub",
+    description: "A web and mobile development project for the SDO Olongapo ICT Department.",
+    skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
+    caseStudy: [
+      ["Problem", "The ICT Department needed a dedicated way for users to access announcements and submit requests from a mobile device."],
+      ["My role", "Mobile application developer; I also contributed to backend optimization as part of the project team."],
+      ["What I owned", "Built the complete mobile application and assisted with optimizing the Express.js backend."],
+      ["Technical decisions", "Used Flutter and Dart for a single mobile codebase, with TypeScript and MySQL supporting the application stack."],
+      ["Outcome", "Delivered the project’s mobile experience for announcements and requests, while helping strengthen the backend that supports it."],
+    ],
+  },
+  {
+    image: "3.png",
+    width: 1919,
+    height: 981,
+    title: "AppointMe",
+    description: "An appointment queueing system for the Gordon College CCS Department.",
+    skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
+    caseStudy: [
+      ["Problem", "The CCS Department needed a clearer way for people to manage appointment queues."],
+      ["My role", "Project manager and contributing developer in a group project."],
+      ["What I owned", "Led the team’s planning and collaboration while contributing to the system’s development."],
+      ["Technical decisions", "The team built the web application with Angular and TypeScript, backed by MySQL for structured appointment data."],
+      ["Outcome", "The team created a purpose-built system for organizing department appointment queues, supported by a shared delivery process."],
+    ],
+  },
   { image: "5.png", width: 1920, height: 996, title: "SubTask", description: "A Task Management Website created using Laravel. Tasks can have a list of subtasks. Features include deadline reminders, a robust details panel, and analytics.", skills: [["6.png", "Laravel"], ["5.png", "PHP"], ["mysql.png", "MySQL"]] },
   { image: "2.png", width: 1919, height: 983, title: "Chattr", description: "A Real Time Messaging Website made with Angular + PHP (Ratchet).", skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]] },
   { image: "1.png", width: 1919, height: 982, title: "Happy Tails", description: "A pet adoption website made with HTML, CSS, and JavaScript. Utilized JavaScript and JSON for displaying various information per animal.", skills: [["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JS"]] },
@@ -141,7 +169,17 @@ export default function ProjectsPage() {
                 );
               })}
             </div>
-            <p>{project.description}</p>
+            <p className="project-description">{project.description}</p>
+            {project.caseStudy && (
+              <dl className="project-case-study">
+                {project.caseStudy.map(([label, detail]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{detail}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
         </div>
         <button aria-label="Previous project" className="slider-control previous" onClick={() => changeProject(-1)} type="button">&#10094;</button>
