@@ -59,8 +59,8 @@ const projects = [
     skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "A chat experience needs messages to appear immediately instead of requiring users to manually refresh the page."],
-      ["My role", "Full-stack developer and project lead in a group PHP project."],
-      ["What I owned", "Led the project and contributed across the application’s real-time messaging workflow."],
+      ["My role", "Full-stack developer; individual project."],
+      ["What I owned", "Built the application’s real-time messaging workflow across the stack."],
       ["Technical decisions", "Used Angular for the client, PHP with Ratchet for WebSocket communication, and MySQL for application data."],
       ["Outcome", "Delivered a messaging website where conversations update in real time through WebSocket communication."],
     ],
@@ -89,7 +89,7 @@ const projects = [
     skills: [["7.png", "Java"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Payroll records need a dedicated interface for organizing and managing pay-related information."],
-      ["My role", "Solo developer; this is the only individual project in the portfolio."],
+      ["My role", "Solo developer."],
       ["What I owned", "Designed and developed the full desktop application and its payroll-management workflow."],
       ["Technical decisions", "Built the desktop interface with Java Swing in NetBeans and used an SQL database to manage payroll data."],
       ["Outcome", "Delivered a standalone desktop tool for organizing payroll information in one place."],

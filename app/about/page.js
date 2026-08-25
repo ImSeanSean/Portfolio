@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 
@@ -34,6 +37,8 @@ const skillGroups = [
     skills: [["flutter.png", "Flutter"]],
   },
 ];
+
+const skillPages = [skillGroups.slice(0, 3), skillGroups.slice(3)];
 
 const skillImageSizes = {
   "dart.png": [300, 300],
@@ -87,6 +92,13 @@ const experience = [
 ];
 
 export default function AboutPage() {
+  const [skillPageIndex, setSkillPageIndex] = useState(0);
+  const skillPage = skillPages[skillPageIndex];
+
+  const changeSkillPage = (direction) => {
+    setSkillPageIndex((index) => (index + direction + skillPages.length) % skillPages.length);
+  };
+
   return (
     <div className="about-page snap-scroll">
       <div className="sticky-page-heading">
@@ -158,27 +170,47 @@ export default function AboutPage() {
             <h2>What I Build With</h2>
             <p>Languages and frameworks I use to turn ideas into working products.</p>
           </div>
-          <div className="skill-groups">
-            {skillGroups.map(({ id, name, skills }, groupIndex) => (
-              <section className="skill-group" key={id} aria-labelledby={`skill-group-${id}`}>
-                <h3 id={`skill-group-${id}`}>{name}</h3>
-                <div className="skills">
-                  {skills.map(([image, skillName], index) => {
-                    const [width, height] = skillImageSizes[image] ?? [1000, 1000];
-                    return (
-                      <div className="skill skill-reveal" key={skillName} style={{ "--item-index": groupIndex * 5 + index }}>
-                        {image ? (
-                          <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
-                        ) : (
-                          <span aria-hidden="true" className="skill-marker">{"</>"}</span>
-                        )}
-                        <h4>{skillName}</h4>
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
+          <div className="toolkit-slider">
+            <button aria-label="Previous toolkit page" className="toolkit-page-control toolkit-previous" onClick={() => changeSkillPage(-1)} type="button">&#10094;</button>
+            <div className="skill-groups" key={skillPageIndex}>
+              {skillPage.map(({ id, name, skills }, groupIndex) => (
+                <section className="skill-group" key={id} aria-labelledby={`skill-group-${id}`}>
+                  <h3 id={`skill-group-${id}`}>{name}</h3>
+                  <div className="skills">
+                    {skills.map(([image, skillName], index) => {
+                      const [width, height] = skillImageSizes[image] ?? [1000, 1000];
+                      return (
+                        <div className="skill skill-reveal" key={skillName} style={{ "--item-index": groupIndex * 5 + index }}>
+                          {image ? (
+                            <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
+                          ) : (
+                            <span aria-hidden="true" className="skill-marker">{"</>"}</span>
+                          )}
+                          <h4>{skillName}</h4>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+            <button aria-label="Next toolkit page" className="toolkit-page-control toolkit-next" onClick={() => changeSkillPage(1)} type="button">&#10095;</button>
+          </div>
+          <div className="toolkit-pagination">
+            <div className="toolkit-page-picker" role="group" aria-label="Choose toolkit page">
+              <p className="toolkit-page-count"><span>{String(skillPageIndex + 1).padStart(2, "0")}</span> / {String(skillPages.length).padStart(2, "0")}</p>
+              <div className="slide-picker">
+                {skillPages.map((page, index) => (
+                  <button
+                    aria-label={`Show toolkit page ${index + 1}: ${page.map((group) => group.name).join(", ")}`}
+                    className={index === skillPageIndex ? "active" : undefined}
+                    key={page[0].id}
+                    onClick={() => setSkillPageIndex(index)}
+                    type="button"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
