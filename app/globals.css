@@ -340,7 +340,6 @@ h1, h2, h3 { text-wrap: balance; }
 .contact-icon { align-items: center; background: #ff4d5a; color: #1a1a1a; display: inline-flex; flex: 0 0 35px; font-family: ui-monospace, Consolas, monospace; font-weight: 700; height: 35px; justify-content: center; width: 35px; }
 .contact-copy { display: grid; gap: .2rem; min-width: 0; overflow-wrap: anywhere; }
 .contact-copy small { color: #d0d0d0; font-size: .82rem; }
-.contact-group-secondary { opacity: .72; }
 .contact-list-secondary { grid-template-columns: minmax(0, 1fr); max-width: calc(50% - .5rem) !important; }
 
 @media (max-width: 768px) {
