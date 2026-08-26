@@ -153,11 +153,17 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 .split { align-items: flex-start; animation: project-enter .55s ease-out both; display: flex; gap: clamp(1.5rem, 4vw, 4rem); justify-content: center; }
 .project-visual { align-items: center; align-self: center; background: #272727; border-bottom: 3px solid #ff4d5a; display: flex; flex: 1 1 52%; justify-content: center; min-width: 0; padding: clamp(.5rem, 1.25vw, 1rem); }
 .project-image { height: min(59vh, 35rem); max-width: 100%; object-fit: contain; }
+.repository-visual { align-items: flex-start; border-left: 3px solid #ff4d5a; display: grid; gap: .6rem; max-width: 28rem; padding: 1.5rem; width: 100%; }
+.repository-visual strong { font-size: clamp(2rem, 4vw, 3.75rem); line-height: 1; overflow-wrap: anywhere; }
+.repository-visual > span { color: #d0d0d0; font-family: monospace; font-size: .85rem; }
 .details { display: flex; flex: 1 1 40%; flex-direction: column; gap: 20px; max-width: 38rem; padding: 1rem 0; }
 .details h2 { font-size: 32px; }
 .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-list .skill h3 { font-size: 20px; }
 .project-description { color: #d0d0d0; line-height: 1.5; }
+.project-source-link { align-self: flex-start; color: white; font-weight: 700; text-decoration: none; }
+.project-source-link:hover { color: #ff4d5a; }
+.project-source-link span { color: #ff4d5a; }
 .project-case-study { border-top: 1px solid #555; column-gap: 1.25rem; display: grid; gap: .9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 1rem; }
 .project-case-study > div { display: grid; gap: .25rem; }
 .project-case-study dt { color: #ff4d5a; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }

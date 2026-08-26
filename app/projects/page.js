@@ -56,6 +56,7 @@ const projects = [
     height: 983,
     title: "Chattr",
     description: "A real-time messaging website centered on WebSocket-powered chat.",
+    repositoryUrl: "https://github.com/ImSeanSean/Chattr",
     skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "A chat experience needs messages to appear immediately instead of requiring users to manually refresh the page."],
@@ -93,6 +94,16 @@ const projects = [
       ["What I owned", "Designed and developed the full desktop application and its payroll-management workflow."],
       ["Technical decisions", "Built the desktop interface with Java Swing in NetBeans and used an SQL database to manage payroll data."],
       ["Outcome", "Delivered a standalone desktop tool for organizing payroll information in one place."],
+    ],
+  },
+  {
+    title: "Eyettendance",
+    description: "A QR-code attendance system using an ESP32-CAM and a Node.js server.",
+    repositoryUrl: "https://github.com/ImSeanSean/Eyettendance-ft.-Unlockr",
+    skills: [[null, "C++"], ["nodejs.svg", "Node.js"]],
+    caseStudy: [
+      ["Project context", "Captures and decodes QR codes, manages attendance records, and provides an administration interface."],
+      ["Source", "The public repository documents the hardware and server-side implementation."],
     ],
   },
 ];
@@ -197,7 +208,15 @@ export default function ProjectsPage() {
       <div className="slider">
         <div className="split" key={project.title}>
           <div className="project-visual">
-            <img alt={`${project.title} project preview`} className="project-image" height={project.height} src={assetPath(`/projects/${project.image}`)} width={project.width} />
+            {project.image ? (
+              <img alt={`${project.title} project preview`} className="project-image" height={project.height} src={assetPath(`/projects/${project.image}`)} width={project.width} />
+            ) : (
+              <div className="repository-visual">
+                <p className="eyebrow">Public repository</p>
+                <strong>{project.title}</strong>
+                <span>github.com/ImSeanSean</span>
+              </div>
+            )}
           </div>
           <div className="details">
             <h2>{project.title}</h2>
@@ -206,13 +225,14 @@ export default function ProjectsPage() {
                 const [width, height] = skillImageSizes[image] ?? [1000, 1000];
                 return (
                   <div className="skill" key={name}>
-                    <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
+                    {image ? <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} /> : <span aria-hidden="true" className="skill-marker">{"</>"}</span>}
                     <h3>{name}</h3>
                   </div>
                 );
               })}
             </div>
             <p className="project-description">{project.description}</p>
+            {project.repositoryUrl && <a className="project-source-link" href={project.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
             {project.caseStudy && (
               <dl className="project-case-study">
                 {project.caseStudy.map(([label, detail]) => (

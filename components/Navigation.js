@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -25,6 +27,7 @@ export default function Navigation() {
             {link.label}
           </Link>
         ))}
+        <a download href={assetPath("/sean-rad-alberto-resume.pdf")}>Resume</a>
       </div>
     </nav>
   );
