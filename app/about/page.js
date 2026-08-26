@@ -91,6 +91,36 @@ const experience = [
   },
 ];
 
+const awards = [
+  {
+    title: "Magna Cum Laude",
+    issuer: "Gordon College",
+    date: "Jul 2026",
+  },
+  {
+    title: "Student Leadership",
+    issuer: "Gordon College",
+    date: "College service",
+    roles: [
+      "President, College of Computer Studies Student Council",
+      "Co-Lead, AWS Cloud Club - Gordon College",
+      "CCS Representative, Supreme Student Council",
+      "President & Vice President, Society of Programming Enthusiasts in Computer Science",
+    ],
+  },
+];
+
+const certifications = [
+  ["AWS AI Practitioner Challenge", "Amazon Web Services", "Jun 24, 2026"],
+  ["Data Literacy", "DataCamp", "Mar 2025"],
+  ["Understanding Cloud Computing", "DataCamp", "Mar 2025"],
+  ["Understanding Data Science", "DataCamp", "Feb 2025"],
+  ["Understanding Machine Learning", "DataCamp", "Feb 2025"],
+  ["Visualize Data with Python", "Department of Information and Communications Technology", "Dec 2024"],
+  ["Analyze Data with Python", "Department of Information and Communications Technology", "Dec 2024"],
+  ["CCNAv7: Introduction to Networks", "Cisco Networking Academy", "Jun 2024"],
+];
+
 export default function AboutPage() {
   const [skillPageIndex, setSkillPageIndex] = useState(0);
   const skillPage = skillPages[skillPageIndex];
@@ -161,6 +191,42 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+      <section className="awards-section snap-section">
+        <div className="awards-panel">
+          <div className="awards-intro">
+            <p className="eyebrow">Recognition</p>
+            <h2>Credentials built through continuous learning.</h2>
+            <p>Academic honors and certifications that reflect the foundations behind my work.</p>
+          </div>
+          <div className="credential-groups">
+            <section className="credential-group" aria-labelledby="awards-heading">
+              <h3 id="awards-heading">Awards</h3>
+              <div className="credential-list">
+                {awards.map(({ title, issuer, date, roles }) => (
+                  <article className="credential-card" key={title}>
+                    <p>{date}</p>
+                    <h4>{title}</h4>
+                    <span>{issuer}</span>
+                    {roles && <ul className="credential-roles">{roles.map((role) => <li key={role}>{role}</li>)}</ul>}
+                  </article>
+                ))}
+              </div>
+            </section>
+            <section className="credential-group" aria-labelledby="certifications-heading">
+              <h3 id="certifications-heading">Certifications</h3>
+              <div className="credential-list certification-list">
+                {certifications.map(([title, issuer, date]) => (
+                  <article className="credential-card" key={title}>
+                    <p>{date}</p>
+                    <h4>{title}</h4>
+                    <span>{issuer}</span>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </section>
       <section className="skills-section snap-section">
