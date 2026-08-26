@@ -262,31 +262,40 @@ h1, h2, h3 { text-wrap: balance; }
 }
 
 @media (max-width: 768px) {
-  .navbar { height: auto; justify-content: center; min-height: 3rem; }
-  .buttons { gap: 1.1rem; margin-right: 0; padding: .8rem 1rem; }
+  .navbar { height: auto; justify-content: center; min-height: 3rem; position: sticky; top: 0; z-index: 4; }
+  .buttons { gap: clamp(.5rem, 2.8vw, 1.1rem); margin-right: 0; padding: .8rem .75rem; }
+  .home-page h1 { text-align: center; }
   .information, .split { grid-template-columns: 1fr; flex-direction: column; }
   .information { display: flex; }
   .section-heading { margin-top: 2rem; padding: 0 7vw; }
   .information, .slider { padding-inline: 7vw; }
-  .snap-scroll { height: calc(100dvh - 3rem); }
-  .snap-section { min-height: calc(100dvh - 3rem); }
-  .about-profile-section { justify-content: flex-start; }
+  /* Phone content is taller than one viewport; use normal document flow instead of nested snap scrolling. */
+  .snap-scroll { height: auto; overflow-y: visible; scroll-snap-type: none; }
+  .snap-section { min-height: 0; scroll-snap-align: none; scroll-snap-stop: normal; }
+  /* Desktop uses this as an overlay; on phones the page heading should scroll with its content. */
+  .sticky-page-heading { flex: 0 0 auto; height: auto; position: static; }
+  .about-profile-section { justify-content: flex-start; padding-top: 0; }
   .about-profile-section .information { padding-bottom: 3rem; padding-top: 4rem; }
-  .experience-section, .project-directions-section { padding-inline: 7vw; }
+  .experience-section { padding-inline: 7vw; }
+  .project-directions-section { padding: 3rem 7vw; }
   .awards-section { padding: 5rem 7vw 2rem; }
   .sticky-page-heading-content { padding-inline: 7vw; }
   .experience-panel { grid-template-columns: 1fr; padding-inline: 0; }
   .credential-groups { grid-template-columns: 1fr; }
   .certification-list { grid-template-columns: 1fr; }
   .experience-intro h2 { font-size: clamp(2rem, 10vw, 3rem); }
-  .experience-timeline { padding-left: 1rem; }
+  .experience-timeline { border-left: 0; display: flex; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain; padding: 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .experience-timeline::-webkit-scrollbar { display: none; }
+  .experience-role { flex: 0 0 calc(100% - 2.75rem); scroll-snap-align: start; scroll-snap-stop: always; }
   .experience-role::after { display: none; }
-  .experience-role-details { box-shadow: none; max-height: none; opacity: 1; overflow: visible; padding: 0; pointer-events: auto; position: static; transform: none; visibility: visible; width: auto; }
+  .experience-role-details { border-top: 1px solid #444; box-shadow: none; margin-top: 1.15rem; max-height: none; opacity: 1; overflow: visible; padding: 1rem 1rem 0; pointer-events: auto; position: static; transform: none; visibility: visible; width: auto; }
+  .experience-role-details ul { gap: .7rem; margin-top: .8rem; }
+  .experience-role-details li:nth-child(n + 4) { display: none; }
   .project-directions { grid-template-columns: 1fr; padding-inline: 0; }
   .project-direction-copy h2 { font-size: clamp(2rem, 10vw, 3rem); }
   .project-image { height: auto; max-width: 100%; }
-  .projects-carousel-section { min-height: calc(100dvh - 3rem); }
-  .skills-section { flex-basis: calc(100dvh - 3rem); height: calc(100dvh - 3rem); }
+  .projects-carousel-section { min-height: 0; }
+  .skills-section { flex-basis: auto; height: auto; min-height: 0; padding: 4rem 7vw 3rem; }
   .details { padding-bottom: 2rem; }
   .project-case-study { grid-template-columns: 1fr; }
   .slider-control { top: 43%; }

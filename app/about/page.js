@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 
@@ -123,10 +123,32 @@ const certifications = [
 
 export default function AboutPage() {
   const [skillPageIndex, setSkillPageIndex] = useState(0);
+  const experienceSwipeStart = useRef(null);
   const skillPage = skillPages[skillPageIndex];
 
   const changeSkillPage = (direction) => {
     setSkillPageIndex((index) => (index + direction + skillPages.length) % skillPages.length);
+  };
+
+  const recordExperienceSwipeStart = (event) => {
+    experienceSwipeStart.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const wrapExperienceSwipe = (event) => {
+    const startX = experienceSwipeStart.current;
+    const endX = event.changedTouches[0]?.clientX;
+    const track = event.currentTarget;
+    const maximumScrollLeft = track.scrollWidth - track.clientWidth;
+
+    experienceSwipeStart.current = null;
+    if (startX === null || endX === undefined || maximumScrollLeft <= 0) return;
+
+    const swipeDistance = startX - endX;
+    const atFirstRole = track.scrollLeft <= 1;
+    const atLastRole = track.scrollLeft >= maximumScrollLeft - 1;
+
+    if (swipeDistance > 40 && atLastRole) track.scrollTo({ left: 0, behavior: "smooth" });
+    if (swipeDistance < -40 && atFirstRole) track.scrollTo({ left: maximumScrollLeft, behavior: "smooth" });
   };
 
   return (
@@ -173,7 +195,7 @@ export default function AboutPage() {
               <p><strong>Bachelor of Science in Computer Science</strong><span>Gordon College · Magna Cum Laude · Jul 2026</span></p>
             </div>
           </div>
-          <ol className="experience-timeline">
+          <ol className="experience-timeline" onTouchEnd={wrapExperienceSwipe} onTouchStart={recordExperienceSwipeStart}>
             {experience.map(({ title, company, period, arrangement, current, detailsAbove, details }) => (
               <li className={`experience-role${current ? " experience-role-current" : ""}`} key={title} tabIndex={0}>
                 <div className="experience-role-meta">
