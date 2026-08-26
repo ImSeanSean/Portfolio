@@ -11,14 +11,10 @@ const projects = [
     height: 1080,
     title: "SDO Olongapo ICT Hub",
     description: "A web and mobile development project for the SDO Olongapo ICT Department.",
-    availabilityNote: "The source code and live demo are not publicly shared because this was organization work. The case study below describes the technical scope without exposing non-public implementation details.",
     skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "The ICT Department needed a dedicated way for users to access announcements and submit requests from a mobile device."],
-      ["My role", "Full-stack developer and project lead, with a focus on the mobile application and backend optimization."],
       ["What I owned", "Led the project, built the complete mobile application, and assisted with optimizing the Express.js backend."],
-      ["Technical decisions", "Used Flutter and Dart for a single mobile codebase, with TypeScript and MySQL supporting the application stack."],
-      ["Outcome", "Delivered the project’s mobile experience for announcements and requests, while helping strengthen the backend that supports it."],
     ],
   },
   {
@@ -31,10 +27,7 @@ const projects = [
     skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "The CCS Department needed a clearer way for people to manage appointment queues."],
-      ["My role", "Project manager and full-stack developer in a group project."],
       ["What I owned", "Led the team’s planning and collaboration while contributing across the system’s development."],
-      ["Technical decisions", "The team built the web application with Angular and TypeScript, backed by MySQL for structured appointment data."],
-      ["Outcome", "The team created a purpose-built system for organizing department appointment queues, supported by a shared delivery process."],
     ],
   },
   {
@@ -47,10 +40,7 @@ const projects = [
     skills: [["6.png", "Laravel"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Larger tasks need to be broken into smaller, trackable steps without losing their relationship to the main task."],
-      ["My role", "Full-stack developer and project lead in a group Laravel project."],
       ["What I owned", "Led the project and developed the task-management experience across the application stack."],
-      ["Technical decisions", "Used Laravel and PHP for the web application, with MySQL supporting task and subtask data."],
-      ["Outcome", "Created a structured workspace where tasks, nested subtasks, deadlines, and progress information stay connected."],
     ],
   },
   {
@@ -63,10 +53,7 @@ const projects = [
     skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "A chat experience needs messages to appear immediately instead of requiring users to manually refresh the page."],
-      ["My role", "Full-stack developer; individual project."],
       ["What I owned", "Built the application’s real-time messaging workflow across the stack."],
-      ["Technical decisions", "Used Angular for the client, PHP with Ratchet for WebSocket communication, and MySQL for application data."],
-      ["Outcome", "Delivered a messaging website where conversations update in real time through WebSocket communication."],
     ],
   },
   {
@@ -79,10 +66,7 @@ const projects = [
     skills: [["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JS"]],
     caseStudy: [
       ["Problem", "People considering adoption need a clear way to browse animals and understand their available information."],
-      ["My role", "Full-stack developer and project lead in a group web project."],
       ["What I owned", "Led the project and developed the experience for presenting each animal’s information."],
-      ["Technical decisions", "Used HTML and CSS for the interface, with JavaScript and JSON to load and display animal-specific details."],
-      ["Outcome", "Created an accessible browsing experience that organizes adoption information by animal."],
     ],
   },
   {
@@ -95,10 +79,7 @@ const projects = [
     skills: [["7.png", "Java"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Payroll records need a dedicated interface for organizing and managing pay-related information."],
-      ["My role", "Solo developer."],
       ["What I owned", "Designed and developed the full desktop application and its payroll-management workflow."],
-      ["Technical decisions", "Built the desktop interface with Java Swing in NetBeans and used an SQL database to manage payroll data."],
-      ["Outcome", "Delivered a standalone desktop tool for organizing payroll information in one place."],
     ],
   },
   {
@@ -237,7 +218,6 @@ export default function ProjectsPage() {
               })}
             </div>
             <p className="project-description">{project.description}</p>
-            {project.availabilityNote && <p className="project-availability-note"><strong>Private project.</strong> {project.availabilityNote}</p>}
             {project.repositoryUrl && <a className="project-source-link" href={project.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
             {project.caseStudy && (
               <dl className="project-case-study">
