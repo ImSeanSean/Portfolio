@@ -331,3 +331,19 @@ h1, h2, h3 { text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+/* Keep recruiter-facing actions clear while leaving social links secondary. */
+.contact-group { max-width: 1120px; padding-inline: 5vw; width: 100%; }
+.contact-group + .contact-group { margin-top: 2rem; }
+.contact-group h2 { color: #ff4d5a; font-family: ui-monospace, Consolas, monospace; font-size: .75rem; letter-spacing: .12em; margin-bottom: .75rem; text-transform: uppercase; }
+.contact-group .contact-list { max-width: none; padding-inline: 0; }
+.contact-icon { align-items: center; background: #ff4d5a; color: #1a1a1a; display: inline-flex; flex: 0 0 35px; font-family: ui-monospace, Consolas, monospace; font-weight: 700; height: 35px; justify-content: center; width: 35px; }
+.contact-copy { display: grid; gap: .2rem; min-width: 0; overflow-wrap: anywhere; }
+.contact-copy small { color: #d0d0d0; font-size: .82rem; }
+.contact-group-secondary { opacity: .72; }
+.contact-list-secondary { grid-template-columns: minmax(0, 1fr); max-width: calc(50% - .5rem) !important; }
+
+@media (max-width: 768px) {
+  .contact-group { padding-inline: 0; }
+  .contact-list-secondary { max-width: none !important; }
+}
