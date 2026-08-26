@@ -1,67 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #1a1a1a;
+  --color-surface: #272727;
+  --color-surface-raised: #303030;
+  --color-accent: #ff4d5a;
+  --color-accent-hover: #ff6a74;
+  --color-copy-muted: #d0d0d0;
+  --color-copy-subtle: #a8a8a8;
+  --color-rule: #555;
+  --font-body: "Trebuchet MS", Arial, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+}
+
+h1, h2, h3, h4 { font-weight: 700; }
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  @apply box-border m-0 p-0;
 }
 
 body {
-  background-color: #1a1a1a;
+  @apply bg-canvas text-white font-body overflow-x-hidden;
   background-image: linear-gradient(rgba(255, 77, 90, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 77, 90, .05) 1px, transparent 1px);
   background-size: 2rem 2rem;
   color-scheme: dark;
-  color: white;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  overflow-x: hidden;
 }
 
 html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 
-.skip-link { background: white; color: #1a1a1a; left: 1rem; padding: .75rem 1rem; position: fixed; top: 1rem; transform: translateY(-200%); z-index: 10; }
-.skip-link:focus-visible { transform: translateY(0); }
+.skip-link { @apply fixed top-4 left-4 z-10 bg-white px-4 py-3 text-canvas -translate-y-[200%]; }
+.skip-link:focus-visible { @apply translate-y-0; }
 
 .navbar {
-  align-items: center;
-  background-color: rgba(39, 39, 39, .92);
-  border-bottom: 1px solid rgba(255, 255, 255, .16);
-  display: flex;
-  font-size: 16px;
-  height: 6vh;
-  justify-content: flex-end;
+  @apply flex h-[6vh] items-center justify-end border-b border-b-white/16 bg-[rgba(39,39,39,.92)] text-base;
 }
 
 .buttons {
-  display: flex;
-  gap: 2vw;
-  margin-right: 3vw;
+  @apply mr-[3vw] flex gap-[2vw];
 }
 
 .buttons a, .buttons button, .contact {
-  color: white;
-  text-decoration: none;
+  @apply text-white no-underline;
 }
 
-.buttons button { background: transparent; border: 0; cursor: pointer; font: inherit; }
-.buttons a:hover, .buttons button:hover, .buttons .active, .contact:hover { color: #ff4d5a; }
+.buttons button { @apply cursor-pointer border-0 bg-transparent font-[inherit]; }
+.buttons a:hover, .buttons button:hover, .buttons .active, .contact:hover { @apply text-accent; }
 
 .home-page, .contact-page, .about-page, .projects-page {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
+  @apply mx-auto flex flex-col items-center;
 }
 
-.home-page { gap: 1.1rem; height: 90vh; justify-content: center; max-width: 62rem; padding: 2rem 0; position: relative; width: 80vw; }
-.home-page h1, .contact-page h1, .section-heading h1 { color: #ff4d5a; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.6rem, 6vw, 5rem); letter-spacing: -.055em; line-height: .95; }
-.home-intro { color: #d0d0d0; font-family: ui-monospace, Consolas, monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
-.home-page p { text-align: center; }
-.home-role { font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.35; }
-.home-summary { color: #d0d0d0; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.65; max-width: 48rem; }
-.hero-actions, .hero-links { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
-.button { border: 1px solid #ff4d5a; color: white; font-family: ui-monospace, Consolas, monospace; font-size: .8rem; font-weight: 700; letter-spacing: .04em; padding: .8rem 1.1rem; text-decoration: none; transition: background-color .2s ease, color .2s ease, transform .2s ease; }
-.button:hover { transform: translateY(-2px); }
-.button-primary { background: #ff4d5a; color: white; }
-.button-primary:hover { background: #ff6a74; color: #1a1a1a; }
-.button-secondary:hover { background: #ff4d5a; color: #1a1a1a; }
+.home-page { @apply relative flex h-[90vh] w-[80vw] max-w-[62rem] justify-center gap-[1.1rem] py-8; }
+.home-page h1, .contact-page h1, .section-heading h1 { @apply font-heading text-[clamp(2.6rem,6vw,5rem)] leading-[.95] tracking-[-.055em] text-accent; }
+.home-intro { @apply font-mono text-xs tracking-[.12em] text-copy-muted uppercase; }
+.home-page p { @apply text-center; }
+.home-role { @apply text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.35] font-bold; }
+.home-summary { @apply max-w-[48rem] text-[clamp(1rem,1.6vw,1.2rem)] leading-[1.65] text-copy-muted; }
+.hero-actions, .hero-links { @apply flex flex-wrap items-center justify-center gap-3; }
+.button { @apply border border-accent px-[1.1rem] py-[.8rem] font-mono text-[.8rem] font-bold tracking-[.04em] text-white no-underline transition-[background-color,color,transform] duration-200 ease-in-out; }
+.button:hover { @apply -translate-y-0.5; }
+.button-primary { @apply bg-accent text-white; }
+.button-primary:hover { @apply bg-accent-hover text-canvas; }
+.button-secondary:hover { @apply bg-accent text-canvas; }
 .resume-download-dialog { background: #272727; border: 1px solid #555; border-bottom: 3px solid #ff4d5a; color: white; inset: 0; margin: auto; max-height: calc(100dvh - 2rem); max-width: min(30rem, calc(100vw - 2rem)); overflow-y: auto; padding: clamp(1.5rem, 4vw, 2.25rem); width: 100%; }
 .resume-download-dialog::backdrop { background: rgba(0, 0, 0, .72); }
 .resume-download-dialog h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.05; margin: .35rem 0 .75rem; }
@@ -386,4 +387,9 @@ h1, h2, h3 { text-wrap: balance; }
 @media (max-width: 768px) {
   .contact-group { padding-inline: 0; }
   .contact-list-secondary { max-width: none !important; }
+}
+
+/* Keep the touch-only project tracker out of the desktop carousel. */
+@media (min-width: 769px) {
+  .projects-mobile-picker { display: none; }
 }
