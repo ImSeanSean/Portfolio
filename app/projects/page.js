@@ -11,6 +11,7 @@ const projects = [
     height: 1080,
     title: "SDO Olongapo ICT Hub",
     description: "A web and mobile development project for the SDO Olongapo ICT Department.",
+    availabilityNote: "The source code and live demo are not publicly shared because this was organization work. The case study below describes the technical scope without exposing non-public implementation details.",
     skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "The ICT Department needed a dedicated way for users to access announcements and submit requests from a mobile device."],
@@ -26,6 +27,7 @@ const projects = [
     height: 981,
     title: "AppointMe",
     description: "An appointment queueing system for the Gordon College CCS Department.",
+    repositoryUrl: "https://github.com/ImSeanSean/AppointMeProduction",
     skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "The CCS Department needed a clearer way for people to manage appointment queues."],
@@ -41,6 +43,7 @@ const projects = [
     height: 996,
     title: "SubTask",
     description: "A Laravel task-management website with nested subtasks, deadline reminders, detailed task views, and analytics.",
+    repositoryUrl: "https://github.com/ImSeanSean/SubTask",
     skills: [["6.png", "Laravel"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Larger tasks need to be broken into smaller, trackable steps without losing their relationship to the main task."],
@@ -72,6 +75,7 @@ const projects = [
     height: 982,
     title: "Happy Tails",
     description: "A pet-adoption website that helps people browse animals available for adoption.",
+    repositoryUrl: "https://github.com/ImSeanSean/HappyTails",
     skills: [["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JS"]],
     caseStudy: [
       ["Problem", "People considering adoption need a clear way to browse animals and understand their available information."],
@@ -87,6 +91,7 @@ const projects = [
     height: 906,
     title: "Payroll Management System",
     description: "An individual Java Swing desktop application for managing payroll records.",
+    repositoryUrl: "https://github.com/ImSeanSean/PMS-Payroll-Management-System-",
     skills: [["7.png", "Java"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Payroll records need a dedicated interface for organizing and managing pay-related information."],
@@ -232,6 +237,7 @@ export default function ProjectsPage() {
               })}
             </div>
             <p className="project-description">{project.description}</p>
+            {project.availabilityNote && <p className="project-availability-note"><strong>Private project.</strong> {project.availabilityNote}</p>}
             {project.repositoryUrl && <a className="project-source-link" href={project.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
             {project.caseStudy && (
               <dl className="project-case-study">
