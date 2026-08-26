@@ -5,7 +5,7 @@ const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 export default function HomePage() {
   return (
     <section className="home-page">
-      <p className="home-intro">Hi, I&apos;m</p>
+      <p className="home-intro">Software engineer</p>
       <h1>Sean Rad P. Alberto</h1>
       <p className="home-role">
         Software Engineer specializing in AI, Automation &amp; Full-Stack Systems
@@ -24,6 +24,7 @@ export default function HomePage() {
         <a href="https://github.com/ImSeanSean" rel="noreferrer" target="_blank">GitHub</a>
         <a href="mailto:seanradalberto@gmail.com">Email</a>
       </div>
+      <p className="hero-specialties">AI systems&nbsp;&nbsp;•&nbsp;&nbsp;automation&nbsp;&nbsp;•&nbsp;&nbsp;full-stack applications</p>
     </section>
   );
 }

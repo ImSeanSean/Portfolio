@@ -6,9 +6,11 @@
 
 body {
   background-color: #1a1a1a;
+  background-image: linear-gradient(rgba(255, 77, 90, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 77, 90, .05) 1px, transparent 1px);
+  background-size: 2rem 2rem;
   color-scheme: dark;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Trebuchet MS", Arial, sans-serif;
   overflow-x: hidden;
 }
 
@@ -19,7 +21,8 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 
 .navbar {
   align-items: center;
-  background-color: #272727;
+  background-color: rgba(39, 39, 39, .92);
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
   display: flex;
   font-size: 16px;
   height: 6vh;
@@ -46,21 +49,37 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
   margin: auto;
 }
 
-.home-page { gap: 1.1rem; height: 90vh; justify-content: center; max-width: 55rem; padding: 2rem 0; width: 80vw; }
-.home-page h1, .contact-page h1, .section-heading h1 { color: #ff4d5a; font-size: 40px; }
-.home-intro { color: #d0d0d0; font-size: 15px; }
+.home-page { gap: 1.1rem; height: 90vh; justify-content: center; max-width: 62rem; padding: 2rem 0; position: relative; width: 80vw; }
+.home-page h1, .contact-page h1, .section-heading h1 { color: #ff4d5a; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.6rem, 6vw, 5rem); letter-spacing: -.055em; line-height: .95; }
+.home-intro { color: #d0d0d0; font-family: ui-monospace, Consolas, monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
 .home-page p { text-align: center; }
 .home-role { font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.35; }
 .home-summary { color: #d0d0d0; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.65; max-width: 48rem; }
 .hero-actions, .hero-links { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
-.button { border: 1px solid #ff4d5a; color: white; font-weight: 700; padding: .8rem 1.1rem; text-decoration: none; transition: background-color .2s ease, color .2s ease, transform .2s ease; }
+.button { border: 1px solid #ff4d5a; color: white; font-family: ui-monospace, Consolas, monospace; font-size: .8rem; font-weight: 700; letter-spacing: .04em; padding: .8rem 1.1rem; text-decoration: none; transition: background-color .2s ease, color .2s ease, transform .2s ease; }
 .button:hover { transform: translateY(-2px); }
-.button-primary { background: #ff4d5a; }
+.button-primary { background: #ff4d5a; color: white; }
 .button-primary:hover { background: #ff6a74; color: #1a1a1a; }
 .button-secondary:hover { background: #ff4d5a; color: #1a1a1a; }
 .hero-links { gap: 1rem; font-size: .9rem; }
 .hero-links a { color: #d0d0d0; }
 .hero-links a:hover { color: #ff4d5a; }
+.hero-specialties { bottom: clamp(1.5rem, 5vh, 4rem); color: #a8a8a8; font-family: ui-monospace, Consolas, monospace; font-size: .7rem; letter-spacing: .1em; position: absolute; text-align: center; text-transform: uppercase; }
+
+/* The restrained field-notebook palette makes screenshots and project artifacts the focal point. */
+.sticky-page-heading h1, .about-cta span, .project-meta span, .project-count span, .toolkit-page-count span, .contact-arrow, .eyebrow, .skill-group > h3, .project-case-study dt { color: #ff4d5a; }
+.profile-frame, .project-visual { background: #272727; border-bottom-color: #ff4d5a; }
+.skill, .experience-role, .contact { background-color: #272727; border-radius: 0; }
+.skill:hover, .contact:hover { border-color: #ff4d5a; }
+.experience-role:hover, .experience-role:focus, .experience-role-current { border-left-color: #ff4d5a; }
+.experience-role-meta span { background: #ff4d5a; color: #1a1a1a; }
+.experience-role-details { background: #303030; border-left-color: #ff4d5a; }
+.project-direction-copy, .repository-visual { border-left-color: #ff4d5a; }
+.project-source-link, .about-cta { color: white; }
+.project-source-link:hover, .about-cta:hover { color: #ff4d5a; }
+.slide-picker button:hover, .slide-picker button.active, .toolkit-page-control:hover, .slider-control:hover { background: #ff4d5a; color: white; }
+.autoplay-toggle:hover { border-color: #ff4d5a; color: #ff4d5a; }
+button:focus-visible, a:focus-visible { outline-color: #ff4d5a; }
 
 .snap-scroll { height: calc(100dvh - 6vh); overflow-y: auto; scroll-snap-type: y mandatory; width: 100%; }
 .snap-section { align-items: center; display: flex; flex: 0 0 auto; justify-content: center; min-height: calc(100dvh - 6vh); scroll-snap-align: start; scroll-snap-stop: always; width: 100%; }
