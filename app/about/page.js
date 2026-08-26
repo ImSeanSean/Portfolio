@@ -123,24 +123,24 @@ const certifications = [
 
 export default function AboutPage() {
   const [skillPageIndex, setSkillPageIndex] = useState(0);
-  const experienceSwipeStart = useRef(null);
+  const carouselSwipeStart = useRef(null);
   const skillPage = skillPages[skillPageIndex];
 
   const changeSkillPage = (direction) => {
     setSkillPageIndex((index) => (index + direction + skillPages.length) % skillPages.length);
   };
 
-  const recordExperienceSwipeStart = (event) => {
-    experienceSwipeStart.current = event.touches[0]?.clientX ?? null;
+  const recordCarouselSwipeStart = (event) => {
+    carouselSwipeStart.current = event.touches[0]?.clientX ?? null;
   };
 
-  const wrapExperienceSwipe = (event) => {
-    const startX = experienceSwipeStart.current;
+  const wrapCarouselSwipe = (event) => {
+    const startX = carouselSwipeStart.current;
     const endX = event.changedTouches[0]?.clientX;
     const track = event.currentTarget;
     const maximumScrollLeft = track.scrollWidth - track.clientWidth;
 
-    experienceSwipeStart.current = null;
+    carouselSwipeStart.current = null;
     if (startX === null || endX === undefined || maximumScrollLeft <= 0) return;
 
     const swipeDistance = startX - endX;
@@ -150,6 +150,27 @@ export default function AboutPage() {
     if (swipeDistance > 40 && atLastRole) track.scrollTo({ left: 0, behavior: "smooth" });
     if (swipeDistance < -40 && atFirstRole) track.scrollTo({ left: maximumScrollLeft, behavior: "smooth" });
   };
+
+  const renderSkillGroup = ({ id, name, skills }, groupIndex, headingPrefix = "") => (
+    <section className="skill-group" key={id} aria-labelledby={`${headingPrefix}skill-group-${id}`}>
+      <h3 id={`${headingPrefix}skill-group-${id}`}>{name}</h3>
+      <div className="skills">
+        {skills.map(([image, skillName], index) => {
+          const [width, height] = skillImageSizes[image] ?? [1000, 1000];
+          return (
+            <div className="skill skill-reveal" key={skillName} style={{ "--item-index": groupIndex * 5 + index }}>
+              {image ? (
+                <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
+              ) : (
+                <span aria-hidden="true" className="skill-marker">{"</>"}</span>
+              )}
+              <h4>{skillName}</h4>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
 
   return (
     <div className="about-page snap-scroll">
@@ -195,7 +216,7 @@ export default function AboutPage() {
               <p><strong>Bachelor of Science in Computer Science</strong><span>Gordon College · Magna Cum Laude · Jul 2026</span></p>
             </div>
           </div>
-          <ol className="experience-timeline" onTouchEnd={wrapExperienceSwipe} onTouchStart={recordExperienceSwipeStart}>
+          <ol className="experience-timeline" onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart}>
             {experience.map(({ title, company, period, arrangement, current, detailsAbove, details }) => (
               <li className={`experience-role${current ? " experience-role-current" : ""}`} key={title} tabIndex={0}>
                 <div className="experience-role-meta">
@@ -225,7 +246,7 @@ export default function AboutPage() {
           <div className="credential-groups">
             <section className="credential-group" aria-labelledby="awards-heading">
               <h3 id="awards-heading">Awards</h3>
-              <div className="credential-list">
+              <div className="credential-list" onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart}>
                 {awards.map(({ title, issuer, date, roles }) => (
                   <article className="credential-card" key={title}>
                     <p>{date}</p>
@@ -238,7 +259,7 @@ export default function AboutPage() {
             </section>
             <section className="credential-group" aria-labelledby="certifications-heading">
               <h3 id="certifications-heading">Certifications</h3>
-              <div className="credential-list certification-list">
+              <div className="credential-list certification-list" onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart}>
                 {certifications.map(([title, issuer, date]) => (
                   <article className="credential-card" key={title}>
                     <p>{date}</p>
@@ -259,32 +280,18 @@ export default function AboutPage() {
             <p>Languages and frameworks I use to turn ideas into working products.</p>
           </div>
           <div className="toolkit-slider">
-            <button aria-label="Previous toolkit page" className="toolkit-page-control toolkit-previous" onClick={() => changeSkillPage(-1)} type="button">&#10094;</button>
-            <div className="skill-groups" key={skillPageIndex}>
-              {skillPage.map(({ id, name, skills }, groupIndex) => (
-                <section className="skill-group" key={id} aria-labelledby={`skill-group-${id}`}>
-                  <h3 id={`skill-group-${id}`}>{name}</h3>
-                  <div className="skills">
-                    {skills.map(([image, skillName], index) => {
-                      const [width, height] = skillImageSizes[image] ?? [1000, 1000];
-                      return (
-                        <div className="skill skill-reveal" key={skillName} style={{ "--item-index": groupIndex * 5 + index }}>
-                          {image ? (
-                            <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} />
-                          ) : (
-                            <span aria-hidden="true" className="skill-marker">{"</>"}</span>
-                          )}
-                          <h4>{skillName}</h4>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </section>
-              ))}
+            <div className="toolkit-desktop">
+              <button aria-label="Previous toolkit page" className="toolkit-page-control toolkit-previous" onClick={() => changeSkillPage(-1)} type="button">&#10094;</button>
+              <div className="skill-groups" key={skillPageIndex}>
+                {skillPage.map((group, index) => renderSkillGroup(group, index, "desktop-"))}
+              </div>
+              <button aria-label="Next toolkit page" className="toolkit-page-control toolkit-next" onClick={() => changeSkillPage(1)} type="button">&#10095;</button>
             </div>
-            <button aria-label="Next toolkit page" className="toolkit-page-control toolkit-next" onClick={() => changeSkillPage(1)} type="button">&#10095;</button>
+            <div className="skill-groups toolkit-mobile" onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart}>
+              {skillGroups.map((group, index) => renderSkillGroup(group, index, "mobile-"))}
+            </div>
           </div>
-          <div className="toolkit-pagination">
+          <div className="toolkit-pagination toolkit-desktop">
             <div className="toolkit-page-picker" role="group" aria-label="Choose toolkit page">
               <p className="toolkit-page-count"><span>{String(skillPageIndex + 1).padStart(2, "0")}</span> / {String(skillPages.length).padStart(2, "0")}</p>
               <div className="slide-picker">

@@ -145,7 +145,7 @@ button:focus-visible, a:focus-visible { outline-color: #ff4d5a; }
 .awards-intro h2 { font-size: clamp(1.75rem, 2.5vw, 2.5rem); line-height: 1.15; margin: .5rem 0 1rem; }
 .awards-intro > p:last-child { color: #d0d0d0; line-height: 1.6; }
 .credential-groups { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); margin-top: clamp(1.5rem, 4vh, 2.5rem); }
-.credential-group { border-top: 1px solid #555; padding-top: .75rem; }
+.credential-group { border-top: 1px solid #555; min-width: 0; padding-top: .75rem; }
 .credential-group > h3 { color: #ff4d5a; font-size: .75rem; letter-spacing: .12em; margin-bottom: .75rem; text-transform: uppercase; }
 .credential-list { display: grid; gap: .6rem; }
 .certification-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -174,6 +174,7 @@ button:focus-visible, a:focus-visible { outline-color: #ff4d5a; }
 .skills-section { align-items: flex-start; flex: 0 0 calc(100dvh - 6vh); height: calc(100dvh - 6vh); justify-content: center; min-height: 0; padding: clamp(4.5rem, 8.75vh, 5rem) 5vw; }
 .skills-section .skills-panel { align-self: flex-start; max-width: 1120px; padding-inline: 5vw; width: 100%; }
 .toolkit-slider { padding-inline: clamp(3.5rem, 5vw, 5rem); position: relative; }
+.toolkit-mobile { display: none; }
 .toolkit-pagination { align-items: center; display: flex; justify-content: center; margin-top: 1.5rem; }
 .toolkit-page-control { align-items: center; background-color: hsla(0, 0%, 0%, .5); border: 0; color: white; cursor: pointer; display: inline-flex; font-size: 30px; justify-content: center; padding: 10px 15px; position: absolute; top: 50%; transform: translateY(-50%); transition: background-color .2s ease, color .2s ease; }
 .toolkit-page-control:hover { background-color: #ff4d5a; }
@@ -191,6 +192,8 @@ button:focus-visible, a:focus-visible { outline-color: #ff4d5a; }
 .project-direction-copy > p:last-child { color: #d0d0d0; font-size: clamp(1rem, 1.25vw, 1.2rem); line-height: 1.6; }
 .projects-carousel-section { align-items: center; min-height: calc(100dvh - 6vh); padding: 3rem 0; }
 .slider { margin: auto; max-width: 1120px; overflow: hidden; padding: 0 5vw 4vh; position: relative; width: 100%; }
+.projects-mobile-carousel { display: none; }
+.projects-mobile-picker { display: none; }
 .project-meta { align-items: center; color: #d0d0d0; display: flex; font-size: 14px; justify-content: space-between; margin: 0 auto 1rem; max-width: 1080px; }
 .project-meta span { color: #ff4d5a; font-weight: 700; }
 .autoplay-toggle { align-items: center; background: transparent; border: 1px solid #555; color: white; cursor: pointer; display: inline-flex; font-size: .8rem; height: 2rem; justify-content: center; padding: 0; transition: border-color .2s ease, color .2s ease; width: 2rem; }
@@ -277,12 +280,16 @@ h1, h2, h3 { text-wrap: balance; }
   .about-profile-section { justify-content: flex-start; padding-top: 0; }
   .about-profile-section .information { padding-bottom: 3rem; padding-top: 4rem; }
   .experience-section { padding-inline: 7vw; }
-  .project-directions-section { padding: 3rem 7vw; }
+  .project-directions-section { justify-content: flex-start; min-height: calc(100dvh - 14rem); padding: 1.5rem 7vw 2rem; }
   .awards-section { padding: 5rem 7vw 2rem; }
   .sticky-page-heading-content { padding-inline: 7vw; }
   .experience-panel { grid-template-columns: 1fr; padding-inline: 0; }
   .credential-groups { grid-template-columns: 1fr; }
-  .certification-list { grid-template-columns: 1fr; }
+  .credential-list { display: flex; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .credential-list::-webkit-scrollbar { display: none; }
+  .credential-list .credential-card { flex: 0 0 calc(100% - 2.75rem); scroll-snap-align: start; scroll-snap-stop: always; }
+  .credential-group[aria-labelledby="awards-heading"] .credential-card:first-child { display: none; }
+  .credential-group[aria-labelledby="awards-heading"] .credential-card { flex-basis: 100%; }
   .experience-intro h2 { font-size: clamp(2rem, 10vw, 3rem); }
   .experience-timeline { border-left: 0; display: flex; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain; padding: 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .experience-timeline::-webkit-scrollbar { display: none; }
@@ -291,18 +298,41 @@ h1, h2, h3 { text-wrap: balance; }
   .experience-role-details { border-top: 1px solid #444; box-shadow: none; margin-top: 1.15rem; max-height: none; opacity: 1; overflow: visible; padding: 1rem 1rem 0; pointer-events: auto; position: static; transform: none; visibility: visible; width: auto; }
   .experience-role-details ul { gap: .7rem; margin-top: .8rem; }
   .experience-role-details li:nth-child(n + 4) { display: none; }
-  .project-directions { grid-template-columns: 1fr; padding-inline: 0; }
-  .project-direction-copy h2 { font-size: clamp(2rem, 10vw, 3rem); }
+  .project-directions { gap: 1.25rem; grid-template-columns: 1fr; padding-inline: 0; }
+  .project-direction-copy h2 { font-size: clamp(1.65rem, 7vw, 2rem); margin: .35rem 0 .65rem; }
+  .project-direction-copy > p:last-child { font-size: .95rem; line-height: 1.45; }
   .project-image { height: auto; max-width: 100%; }
-  .projects-carousel-section { min-height: 0; }
+  .projects-carousel-section { align-items: stretch; flex-direction: column; min-height: 0; padding: 2rem 7vw 4rem; }
+  .projects-slider-desktop { display: none; }
+  .projects-mobile-carousel { display: flex; gap: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .projects-mobile-carousel::-webkit-scrollbar { display: none; }
+  .projects-mobile-carousel .split { align-items: stretch; flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+  .projects-mobile-carousel .project-visual { align-self: stretch; width: 100%; }
+  .projects-mobile-carousel .project-visual:has(.project-image) { aspect-ratio: 16 / 9; }
+  .projects-mobile-carousel .project-image { height: 100%; object-fit: contain; width: 100%; }
+  .projects-mobile-carousel .details { gap: .75rem; padding: .75rem 0 1.25rem; }
+  .projects-mobile-carousel .details h2 { font-size: clamp(1.35rem, 6vw, 1.6rem); }
+  .projects-mobile-carousel .skill-list { gap: .5rem; }
+  .projects-mobile-carousel .skill-list .skill { gap: .45rem; padding: .45rem .6rem; }
+  .projects-mobile-carousel .skill-list .skill img { height: 20px; }
+  .projects-mobile-carousel .skill-list .skill h3 { font-size: 1rem; }
+  .projects-mobile-carousel .project-description { font-size: .95rem; }
+  .projects-mobile-carousel .project-case-study { gap: .6rem; padding-top: .75rem; }
+  .projects-mobile-carousel .project-case-study dd { font-size: .9rem; line-height: 1.4; }
+  .projects-mobile-picker { display: flex; justify-content: center; margin-top: 1rem; }
   .skills-section { flex-basis: auto; height: auto; min-height: 0; padding: 4rem 7vw 3rem; }
+  .toolkit-slider { padding-inline: 0; }
+  .toolkit-desktop { display: none; }
+  .toolkit-mobile { display: flex; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .toolkit-mobile::-webkit-scrollbar { display: none; }
+  .toolkit-mobile .skill-group { flex: 0 0 calc(100% - 2.75rem); min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
   .details { padding-bottom: 2rem; }
   .project-case-study { grid-template-columns: 1fr; }
   .slider-control { top: 43%; }
   .contact-page { padding-inline: 7vw; }
   .contact-heading, .contact-list { padding-inline: 0; }
   .contact-list { grid-template-columns: 1fr; }
-  .skill-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skill-groups:not(.toolkit-mobile) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .skills .skill h4 { font-size: 18px; }
 }
 

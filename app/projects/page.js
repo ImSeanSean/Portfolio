@@ -101,10 +101,13 @@ const skillImageSizes = {
 
 export default function ProjectsPage() {
   const [projectIndex, setProjectIndex] = useState(0);
+  const [mobileProjectIndex, setMobileProjectIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isProjectSummaryVisible, setIsProjectSummaryVisible] = useState(true);
   const projectsPageRef = useRef(null);
+  const mobileCarouselRef = useRef(null);
+  const carouselSwipeStart = useRef(null);
   const project = projects[projectIndex];
 
   useEffect(() => {
@@ -131,13 +134,30 @@ export default function ProjectsPage() {
     const carousel = page?.querySelector(".projects-carousel-section");
     if (!page || !carousel) return undefined;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsProjectSummaryVisible(!entry.isIntersecting),
-      { root: page, threshold: 0.01 },
-    );
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    let observer;
 
-    observer.observe(carousel);
-    return () => observer.disconnect();
+    const updateSummaryVisibility = () => {
+      observer?.disconnect();
+
+      if (mobileQuery.matches) {
+        setIsProjectSummaryVisible(true);
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        ([entry]) => setIsProjectSummaryVisible(!entry.isIntersecting),
+        { root: page, threshold: 0.01 },
+      );
+      observer.observe(carousel);
+    };
+
+    updateSummaryVisibility();
+    mobileQuery.addEventListener("change", updateSummaryVisibility);
+    return () => {
+      observer?.disconnect();
+      mobileQuery.removeEventListener("change", updateSummaryVisibility);
+    };
   }, []);
 
   const changeProject = (direction) => {
@@ -145,6 +165,83 @@ export default function ProjectsPage() {
   };
 
   const selectProject = (index) => setProjectIndex(index);
+
+  const selectMobileProject = (index) => {
+    const track = mobileCarouselRef.current;
+    if (!track) return;
+
+    track.scrollTo({ left: index * track.clientWidth, behavior: "smooth" });
+  };
+
+  const updateMobileProjectIndex = (event) => {
+    const track = event.currentTarget;
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+
+    setMobileProjectIndex(Math.min(index, projects.length - 1));
+  };
+
+  const recordCarouselSwipeStart = (event) => {
+    carouselSwipeStart.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const wrapCarouselSwipe = (event) => {
+    const startX = carouselSwipeStart.current;
+    const endX = event.changedTouches[0]?.clientX;
+    const track = event.currentTarget;
+    const maximumScrollLeft = track.scrollWidth - track.clientWidth;
+
+    carouselSwipeStart.current = null;
+    if (startX === null || endX === undefined || maximumScrollLeft <= 0) return;
+
+    const swipeDistance = startX - endX;
+    const atFirstProject = track.scrollLeft <= 1;
+    const atLastProject = track.scrollLeft >= maximumScrollLeft - 1;
+
+    if (swipeDistance > 40 && atLastProject) track.scrollTo({ left: 0, behavior: "smooth" });
+    if (swipeDistance < -40 && atFirstProject) track.scrollTo({ left: maximumScrollLeft, behavior: "smooth" });
+  };
+
+  const renderProject = (item) => (
+    <div className="split" key={item.title}>
+      <div className="project-visual">
+        {item.image ? (
+          <img alt={`${item.title} project preview`} className="project-image" height={item.height} src={assetPath(`/projects/${item.image}`)} width={item.width} />
+        ) : (
+          <div className="repository-visual">
+            <p className="eyebrow">Public repository</p>
+            <strong>{item.title}</strong>
+            <span>github.com/ImSeanSean</span>
+          </div>
+        )}
+      </div>
+      <div className="details">
+        <h2>{item.title}</h2>
+        <div className="skill-list">
+          {item.skills.map(([image, name]) => {
+            const [width, height] = skillImageSizes[image] ?? [1000, 1000];
+            return (
+              <div className="skill" key={name}>
+                {image ? <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} /> : <span aria-hidden="true" className="skill-marker">{"</>"}</span>}
+                <h3>{name}</h3>
+              </div>
+            );
+          })}
+        </div>
+        <p className="project-description">{item.description}</p>
+        {item.repositoryUrl && <a className="project-source-link" href={item.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
+        {item.caseStudy && (
+          <dl className="project-case-study">
+            {item.caseStudy.map(([label, detail]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{detail}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+    </div>
+  );
 
   const handleTabKeyDown = (event, index) => {
     if (event.key === "ArrowRight") {
@@ -191,46 +288,8 @@ export default function ProjectsPage() {
         </div>
       </section>
       <section aria-label="Projects carousel" className="projects-carousel-section snap-section" role="region">
-      <div className="slider">
-        <div className="split" key={project.title}>
-          <div className="project-visual">
-            {project.image ? (
-              <img alt={`${project.title} project preview`} className="project-image" height={project.height} src={assetPath(`/projects/${project.image}`)} width={project.width} />
-            ) : (
-              <div className="repository-visual">
-                <p className="eyebrow">Public repository</p>
-                <strong>{project.title}</strong>
-                <span>github.com/ImSeanSean</span>
-              </div>
-            )}
-          </div>
-          <div className="details">
-            <h2>{project.title}</h2>
-            <div className="skill-list">
-              {project.skills.map(([image, name]) => {
-                const [width, height] = skillImageSizes[image] ?? [1000, 1000];
-                return (
-                  <div className="skill" key={name}>
-                    {image ? <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} /> : <span aria-hidden="true" className="skill-marker">{"</>"}</span>}
-                    <h3>{name}</h3>
-                  </div>
-                );
-              })}
-            </div>
-            <p className="project-description">{project.description}</p>
-            {project.repositoryUrl && <a className="project-source-link" href={project.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
-            {project.caseStudy && (
-              <dl className="project-case-study">
-                {project.caseStudy.map(([label, detail]) => (
-                  <div key={label}>
-                    <dt>{label}</dt>
-                    <dd>{detail}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-          </div>
-        </div>
+      <div className="slider projects-slider-desktop">
+        {renderProject(project)}
         <button aria-label="Previous project" className="slider-control previous" onClick={() => changeProject(-1)} type="button">&#10094;</button>
         <button aria-label="Next project" className="slider-control next" onClick={() => changeProject(1)} type="button">&#10095;</button>
         <div className="slider-footer">
@@ -266,6 +325,21 @@ export default function ProjectsPage() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="projects-mobile-carousel" onScroll={updateMobileProjectIndex} onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart} ref={mobileCarouselRef}>
+        {projects.map(renderProject)}
+      </div>
+      <div aria-label="Choose a project" className="projects-mobile-picker slide-picker" role="group">
+        {projects.map((item, index) => (
+          <button
+            aria-label={`Show ${item.title}`}
+            aria-pressed={index === mobileProjectIndex}
+            className={index === mobileProjectIndex ? "active" : undefined}
+            key={item.title}
+            onClick={() => selectMobileProject(index)}
+            type="button"
+          />
+        ))}
       </div>
       </section>
     </div>
