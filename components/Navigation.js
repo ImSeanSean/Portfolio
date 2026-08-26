@@ -19,6 +19,7 @@ export default function Navigation() {
       <div className="buttons">
         {links.map((link) => (
           <Link
+            aria-current={pathname === link.href ? "page" : undefined}
             className={pathname === link.href ? "active" : undefined}
             href={link.href}
             key={link.href}

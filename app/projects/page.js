@@ -240,6 +240,7 @@ export default function ProjectsPage() {
               {projects.map((item, index) => (
                 <button
                   aria-label={`Show ${item.title}`}
+                  aria-pressed={index === projectIndex}
                   className={index === projectIndex ? "active" : undefined}
                   key={item.title}
                   onClick={() => selectProject(index)}
