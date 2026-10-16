@@ -331,6 +331,16 @@ button:focus-visible, a:focus-visible { outline-color: #ff4d5a; }
 .slide-progress { background: #444; height: 2px; max-width: 15rem; overflow: hidden; width: 35%; }
 .slide-progress span { animation: slide-progress 8s linear both; background: #ff4d5a; display: block; height: 100%; width: 100%; }
 
+.professional-work-section { align-items: center; border-top: 1px solid #555; flex: 0 0 calc(100dvh - 6vh); flex-direction: column; gap: 1.5rem; height: calc(100dvh - 6vh); justify-content: center; min-height: 0; padding: clamp(7rem, 14vh, 9rem) 5vw clamp(2rem, 5vh, 3rem); }
+.professional-work-heading { align-self: stretch; margin: 0 auto; max-width: 1120px; width: 100%; }
+.professional-work-heading h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.25rem, 4vw, 4rem); letter-spacing: -.045em; line-height: 1; margin: .5rem 0 1rem; }
+.professional-work-heading > p:last-child { color: #d0d0d0; line-height: 1.55; max-width: 38rem; }
+.professional-work-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 1.75rem auto 0; max-width: 1120px; width: 100%; }
+.professional-work-card { background: #272727; border-left: 3px solid #ff4d5a; display: flex; flex-direction: column; gap: .75rem; min-height: 13rem; min-width: 0; padding: 1.5rem; }
+.professional-work-card h3 { font-size: clamp(1.25rem, 2vw, 1.7rem); line-height: 1.1; }
+.professional-work-card > p:last-child { color: #d0d0d0; line-height: 1.55; }
+.professional-work-note { color: #999; font-size: .8rem; line-height: 1.4; margin: .25rem auto 0; max-width: 1120px; text-align: right; width: 100%; }
+
 button:focus-visible, a:focus-visible { outline: 2px solid #ff4d5a; outline-offset: 3px; }
 button, a { touch-action: manipulation; }
 
@@ -436,6 +446,10 @@ h1, h2, h3 { text-wrap: balance; }
   .projects-mobile-carousel .project-case-study { gap: .6rem; padding-top: .75rem; }
   .projects-mobile-carousel .project-case-study dd { font-size: .9rem; line-height: 1.4; }
   .projects-mobile-picker { display: flex; justify-content: center; margin-top: 1rem; }
+  .professional-work-section { flex-basis: auto; height: auto; padding: 4rem 7vw 5rem; }
+  .professional-work-grid { grid-template-columns: 1fr; margin-top: 1rem; }
+  .professional-work-card { min-height: 0; padding: 1.25rem; }
+  .professional-work-note { text-align: left; }
   .skills-section { flex-basis: auto; height: auto; min-height: 0; padding: 4rem 7vw 3rem; }
   .toolkit-slider { padding-inline: 0; }
   .toolkit-desktop { display: none; }
@@ -464,6 +478,7 @@ h1, h2, h3 { text-wrap: balance; }
   .about-profile-section { padding: clamp(5.5rem, 11vh, 6rem) 5vw clamp(3.5rem, 7.5vh, 4rem); }
   .about-profile-section .personal { transform: scale(.9); transform-origin: center; }
   .awards-section { padding-bottom: 1.5rem; padding-top: clamp(3rem, 6vh, 4rem); }
+  .professional-work-section { padding-bottom: 1.5rem; padding-top: clamp(7rem, 14vh, 8rem); }
   .awards-intro h2 { font-size: clamp(1.75rem, 2.25vw, 2.25rem); }
   .credential-groups { gap: 1rem; margin-top: 1rem; }
   .credential-list { gap: .45rem; }

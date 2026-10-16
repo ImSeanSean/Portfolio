@@ -43,7 +43,8 @@ export default function ProjectsPage() {
   useEffect(() => {
     const page = projectsPageRef.current;
     const carousel = page?.querySelector(".projects-carousel-section");
-    if (!page || !carousel) return undefined;
+    const professionalWork = page?.querySelector(".professional-work-section");
+    if (!page || !carousel || !professionalWork) return undefined;
 
     const mobileQuery = window.matchMedia("(max-width: 768px)");
     let observer;
@@ -56,11 +57,19 @@ export default function ProjectsPage() {
         return;
       }
 
+      const visibleSections = new Set();
       observer = new IntersectionObserver(
-        ([entry]) => setIsProjectSummaryVisible(!entry.isIntersecting),
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) visibleSections.add(entry.target);
+            else visibleSections.delete(entry.target);
+          });
+          setIsProjectSummaryVisible(visibleSections.size === 0);
+        },
         { root: page, threshold: 0.01 },
       );
       observer.observe(carousel);
+      observer.observe(professionalWork);
     };
 
     updateSummaryVisibility();
@@ -255,6 +264,31 @@ export default function ProjectsPage() {
           />
         ))}
       </div>
+      </section>
+      <section aria-labelledby="professional-work-heading" className="professional-work-section snap-section">
+        <div className="professional-work-heading">
+          <p className="eyebrow">Beyond the public case studies</p>
+          <h2 id="professional-work-heading">Selected professional work</h2>
+          <p>Additional systems and workflows I have created and maintained, summarized at a high level to respect client and employer confidentiality.</p>
+        </div>
+        <div className="professional-work-grid">
+          <article className="professional-work-card">
+            <p className="eyebrow">AI systems</p>
+            <h3>AI for practical business work</h3>
+            <p>Created AI-powered systems supporting business development, finance, HR operations, and other organizational workflows.</p>
+          </article>
+          <article className="professional-work-card">
+            <p className="eyebrow">Websites and platforms</p>
+            <h3>Digital products for real teams</h3>
+            <p>Created websites and platforms for companies, gaming communities, optometry services, passport-photo processing, CRM management, and other business needs.</p>
+          </article>
+          <article className="professional-work-card">
+            <p className="eyebrow">Workflow automation</p>
+            <h3>Less manual work, better follow-through</h3>
+            <p>Created and managed automations for lead generation, repetitive tasks, social media content creation, notifications, and other operational processes.</p>
+          </article>
+        </div>
+        <p className="professional-work-note">Specific client, employer, and implementation details are intentionally omitted.</p>
       </section>
     </div>
   );
