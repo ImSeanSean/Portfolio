@@ -31,8 +31,8 @@ const processSteps = [
 
 export default function HomePage() {
   return (
-    <div className="home-route">
-      <section className="home-page">
+    <div className="home-route snap-scroll">
+      <section className="home-page home-snap-section" id="home-hero">
         <p className="home-intro">Software engineer for practical systems</p>
         <h1>I turn complex workflows into software people can use.</h1>
         <p className="home-role">
@@ -59,7 +59,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="featured-work-heading" className="featured-work">
+      <section aria-labelledby="featured-work-heading" className="featured-work home-snap-section" id="featured-work">
         <div className="home-section-heading">
           <p className="eyebrow">Evidence from the work</p>
           <h2 id="featured-work-heading">Featured work</h2>
@@ -114,7 +114,7 @@ export default function HomePage() {
         <Link className="home-section-link" href="/projects">See the full project catalogue <span aria-hidden="true">→</span></Link>
       </section>
 
-      <section aria-labelledby="process-heading" className="process-section">
+      <section aria-labelledby="process-heading" className="process-section home-snap-section" id="how-i-work">
         <div className="home-section-heading process-heading">
           <p className="eyebrow">How I work</p>
           <h2 id="process-heading">A practical loop from friction to flow.</h2>

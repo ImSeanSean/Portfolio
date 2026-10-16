@@ -108,7 +108,7 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
   @apply mx-auto flex flex-col items-center;
 }
 
-.home-page { @apply relative flex h-[90vh] w-[80vw] max-w-[68rem] justify-center gap-[1.1rem] pb-8 text-center; padding-top: clamp(4rem, 8vh, 6rem); }
+.home-page { @apply relative flex h-[calc(100dvh-6vh)] w-[80vw] max-w-[68rem] justify-center gap-[1.1rem] pb-8 text-center; min-height: 0; padding-top: clamp(4rem, 8vh, 6rem); }
 .home-page h1, .contact-page h1, .section-heading h1 { @apply font-heading text-[clamp(2.6rem,6vw,5rem)] leading-[.95] tracking-[-.055em] text-accent; }
 .home-page h1 { @apply max-w-[58rem]; }
 .home-intro { @apply font-mono text-xs tracking-[.12em] text-copy-muted uppercase; }
@@ -140,6 +140,8 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 .hero-links a:hover { color: #ff4d5a; }
 
 .home-route { width: 100%; }
+.home-route.snap-scroll { height: calc(100dvh - 6vh); overflow-y: auto; scroll-snap-type: y mandatory; }
+.home-snap-section { min-height: calc(100dvh - 6vh); scroll-snap-align: start; scroll-snap-stop: always; }
 .home-section-heading { max-width: 44rem; }
 .home-section-heading h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.25rem, 4vw, 4rem); letter-spacing: -.045em; line-height: 1; margin: .5rem 0 1rem; }
 .home-section-heading > p:last-child { color: #d0d0d0; font-size: clamp(1rem, 1.35vw, 1.15rem); line-height: 1.55; max-width: 38rem; }
@@ -371,6 +373,8 @@ h1, h2, h3 { text-wrap: balance; }
   .buttons { flex-wrap: wrap; gap: .55rem 1rem; grid-area: links; justify-content: flex-start; padding-top: .25rem; }
   .home-page h1 { text-align: center; }
   .home-page { height: auto; min-height: calc(90vh - 1rem); padding-bottom: 5rem; padding-top: 4rem; width: 86vw; }
+  .home-route.snap-scroll { height: auto; overflow-y: visible; scroll-snap-type: none; }
+  .home-snap-section { min-height: 0; scroll-snap-align: none; scroll-snap-stop: normal; }
   .hero-proof { grid-template-columns: 1fr; gap: .85rem; max-width: 20rem; }
   .hero-proof li { padding: 0; }
   .hero-proof li + li { border-left: 0; border-top: 1px solid rgba(255, 255, 255, .2); padding-top: .85rem; }
@@ -479,6 +483,14 @@ h1, h2, h3 { text-wrap: balance; }
   .project-description { font-size: 16px !important; }
   .project-case-study { gap: .6rem; padding-top: .75rem; }
   .project-case-study dd { font-size: .9rem; line-height: 1.35; }
+}
+
+@media (min-width: 769px) and (max-height: 820px) {
+  .home-page { gap: .8rem; padding-bottom: 2rem; padding-top: 3rem; }
+  .home-page h1 { font-size: clamp(2.35rem, 5.4vw, 4.25rem); }
+  .home-role { font-size: clamp(1.05rem, 1.7vw, 1.3rem); }
+  .home-summary { line-height: 1.45; }
+  .hero-proof { padding-block: .75rem; }
 }
 
 @media (max-width: 500px) {
