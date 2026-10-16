@@ -31,6 +31,19 @@ const projects = [
     ],
   },
   {
+    image: "darwinkpi.png",
+    width: 500,
+    height: 500,
+    title: "DarwinKPI",
+    description: "A workforce KPI analytics and reporting dashboard for tracking performance, goals, and team insights.",
+    repositoryUrl: "https://github.com/ImSeanSean/darwinKPI",
+    skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"]],
+    caseStudy: [
+      ["Problem", "Teams need a clearer way to monitor workforce performance and turn KPI data into useful decisions."],
+      ["What I built", "A dashboard experience for real-time KPI tracking, workforce analytics, goal management, and custom reporting views."],
+    ],
+  },
+  {
     image: "5.png",
     width: 1920,
     height: 996,
@@ -90,6 +103,19 @@ const projects = [
     caseStudy: [
       ["Project context", "Captures and decodes QR codes, manages attendance records, and provides an administration interface."],
       ["Source", "The public repository documents the hardware and server-side implementation."],
+    ],
+  },
+  {
+    title: "Tulai",
+    description: "An AI-assisted enrollment system that makes Philippine Alternative Learning System registration more accessible.",
+    repositoryUrl: "https://github.com/ImSeanSean/Tulai",
+    image: "tulai-logo.png",
+    width: 1024,
+    height: 1024,
+    skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["gemini.svg", "Google Gemini"]],
+    caseStudy: [
+      ["Problem", "ALS enrollment can be difficult for people with limited digital literacy and complex form requirements."],
+      ["What I built", "A guided Flutter enrollment flow with an AI assistant, voice input, bilingual guidance, and secure Supabase-backed data handling."],
     ],
   },
 ];
