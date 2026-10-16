@@ -13,9 +13,12 @@ const projects = [
     description: "A web and mobile development project for the SDO Olongapo ICT Department.",
     skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
     caseStudy: [
-      ["Problem", "The ICT Department needed a dedicated way for users to access announcements and submit requests from a mobile device."],
-      ["What I owned", "Led the project, built the complete mobile application, and assisted with optimizing the Express.js backend."],
+      ["Problem", "ICT coordinators were handling a high volume of requests across schools, making request management and announcements harder to coordinate."],
+      ["How it works", "A mobile app gives users a dedicated path for announcements and request submission, supported by an Express.js backend."],
+      ["My role", "Sole Mobile Frontend Developer; led stakeholder discussions, guided the team using Agile, and assisted with the Express.js backend."],
+      ["Outcome", "Turned the department's request and announcement flow into a dedicated mobile workflow."],
     ],
+    accessNote: "The source and live system are not public; details here are limited to the work shown.",
   },
   {
     image: "3.png",
@@ -26,8 +29,10 @@ const projects = [
     repositoryUrl: "https://github.com/ImSeanSean/AppointMeProduction",
     skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"], ["mysql.png", "MySQL"]],
     caseStudy: [
-      ["Problem", "The CCS Department needed a clearer way for people to manage appointment queues."],
-      ["What I owned", "Led the team’s planning and collaboration while contributing across the system’s development."],
+      ["Problem", "Students needed a more streamlined appointment process with the Gordon College CCS Faculty."],
+      ["How it works", "An appointment management system organizes student requests into a queue for the CCS Faculty."],
+      ["My role", "Led discussions with faculty, managed the team through Agile, created the backend and database, and acted as Lead Frontend Developer."],
+      ["Outcome", "Gave the faculty a single workflow for organizing student appointments while giving the team a shared delivery process."],
     ],
   },
   {
@@ -39,8 +44,10 @@ const projects = [
     repositoryUrl: "https://github.com/ImSeanSean/darwinKPI",
     skills: [["4.png", "Angular"], ["typescript.png", "TypeScript"]],
     caseStudy: [
-      ["Problem", "Teams need a clearer way to monitor workforce performance and turn KPI data into useful decisions."],
-      ["What I built", "A dashboard experience for real-time KPI tracking, workforce analytics, goal management, and custom reporting views."],
+      ["Problem", "Teams needed a clearer way to monitor workforce performance and turn KPI data into useful decisions."],
+      ["How it works", "A web dashboard brings together real-time KPI tracking, analytics, goal management, flexible visualizations, and reporting views."],
+      ["My role", "Led the end-to-end development and management of the workforce performance tracking system."],
+      ["Outcome", "Made workforce performance, goals, and reporting visible in one place for data-informed decisions."],
     ],
   },
   {
@@ -53,7 +60,9 @@ const projects = [
     skills: [["6.png", "Laravel"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Larger tasks need to be broken into smaller, trackable steps without losing their relationship to the main task."],
-      ["What I owned", "Led the project and developed the task-management experience across the application stack."],
+      ["How it works", "Nested subtasks retain their parent relationship, with deadline reminders, detailed task views, and analytics around the work."],
+      ["My role", "Designed and developed the application across Laravel, PHP, and MySQL."],
+      ["Outcome", "Turned multi-level task tracking into a structured workflow that keeps detail connected to the larger task."],
     ],
   },
   {
@@ -66,7 +75,9 @@ const projects = [
     skills: [["4.png", "Angular"], ["5.png", "PHP"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "A chat experience needs messages to appear immediately instead of requiring users to manually refresh the page."],
-      ["What I owned", "Built the application’s real-time messaging workflow across the stack."],
+      ["How it works", "An Angular client uses PHP and Ratchet WebSockets to deliver messages as chat events occur."],
+      ["My role", "Built the real-time messaging workflow across the application stack."],
+      ["Outcome", "Produced a chat experience centered on immediate message updates instead of manual refreshes."],
     ],
   },
   {
@@ -79,7 +90,9 @@ const projects = [
     skills: [["1.png", "HTML"], ["2.png", "CSS"], ["3.png", "JS"]],
     caseStudy: [
       ["Problem", "People considering adoption need a clear way to browse animals and understand their available information."],
-      ["What I owned", "Led the project and developed the experience for presenting each animal’s information."],
+      ["How it works", "A lightweight site uses JavaScript and JSON to present each animal's information in a browsable experience."],
+      ["My role", "Led the project and developed the frontend experience for presenting each animal's information."],
+      ["Outcome", "Gave prospective adopters a clearer way to browse available animals and their details."],
     ],
   },
   {
@@ -92,7 +105,9 @@ const projects = [
     skills: [["7.png", "Java"], ["mysql.png", "MySQL"]],
     caseStudy: [
       ["Problem", "Payroll records need a dedicated interface for organizing and managing pay-related information."],
-      ["What I owned", "Designed and developed the full desktop application and its payroll-management workflow."],
+      ["How it works", "A Java Swing desktop application uses an SQL database to manage payroll records through a focused desktop workflow."],
+      ["My role", "Designed and developed the full desktop application and its payroll-management workflow as an individual project."],
+      ["Outcome", "Created a focused desktop workflow for organizing payroll records and pay-related information."],
     ],
   },
   {
@@ -101,8 +116,10 @@ const projects = [
     repositoryUrl: "https://github.com/ImSeanSean/Eyettendance-ft.-Unlockr",
     skills: [[null, "C++"], ["nodejs.svg", "Node.js"]],
     caseStudy: [
-      ["Project context", "Captures and decodes QR codes, manages attendance records, and provides an administration interface."],
-      ["Source", "The public repository documents the hardware and server-side implementation."],
+      ["Problem", "Attendance capture needs a reliable path from a physical QR scan to stored records and administrative review."],
+      ["How it works", "An ESP32-CAM captures QR codes; a Node.js server decodes scans and records attendance in SQLite; a web interface manages students and attendance."],
+      ["My role", "Built the connected prototype across the ESP32-CAM capture flow, Node.js server, database, and administration interface."],
+      ["Outcome", "Connected scan capture, attendance records, and administration in one working prototype workflow."],
     ],
   },
   {
@@ -113,10 +130,14 @@ const projects = [
     width: 1024,
     height: 1024,
     skills: [["flutter.png", "Flutter"], ["dart.png", "Dart"], ["gemini.svg", "Google Gemini"]],
+    demoUrl: "https://tulai.vercel.app",
     caseStudy: [
       ["Problem", "ALS enrollment can be difficult for people with limited digital literacy and complex form requirements."],
-      ["What I built", "A guided Flutter enrollment flow with an AI assistant, voice input, bilingual guidance, and secure Supabase-backed data handling."],
+      ["How it works", "A guided Flutter flow supports step-by-step form completion with an AI assistant, voice input, English and Filipino guidance, and Supabase-backed data handling."],
+      ["My role", "Solo developer; handled the end-to-end mobile development and AI integration."],
+      ["Outcome", "Made the enrollment flow more accessible for people with limited typing skills or digital literacy through guided, voice-enabled interaction."],
     ],
+    accessNote: "The public demo is available; the source repository is private.",
   },
 ];
 
@@ -251,19 +272,7 @@ export default function ProjectsPage() {
       </div>
       <div className="details">
         <h2 id={panelId ? `${panelId}-title` : undefined}>{item.title}</h2>
-        <div className="skill-list">
-          {item.skills.map(([image, name]) => {
-            const [width, height] = skillImageSizes[image] ?? [1000, 1000];
-            return (
-              <div className="skill" key={name}>
-                {image ? <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} /> : <span aria-hidden="true" className="skill-marker">{"</>"}</span>}
-                <h3>{name}</h3>
-              </div>
-            );
-          })}
-        </div>
         <p className="project-description">{item.description}</p>
-        {item.repositoryUrl && <a className="project-source-link" href={item.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
         {item.caseStudy && (
           <dl className="project-case-study">
             {item.caseStudy.map(([label, detail]) => (
@@ -273,6 +282,27 @@ export default function ProjectsPage() {
               </div>
             ))}
           </dl>
+        )}
+        <div className="project-stack">
+          <h3>Stack</h3>
+          <div className="skill-list">
+            {item.skills.map(([image, name]) => {
+              const [width, height] = skillImageSizes[image] ?? [1000, 1000];
+              return (
+                <div className="skill" key={name}>
+                  {image ? <img alt="" height={height} src={assetPath(`/skills/${image}`)} width={width} /> : <span aria-hidden="true" className="skill-marker">{"</>"}</span>}
+                  <h4>{name}</h4>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {(item.repositoryUrl || item.demoUrl || item.accessNote) && (
+          <div className="project-actions">
+            {item.repositoryUrl && <a className="project-source-link" href={item.repositoryUrl} rel="noreferrer" target="_blank">View source on GitHub <span aria-hidden="true">↗</span></a>}
+            {item.demoUrl && <a className="project-source-link" href={item.demoUrl} rel="noreferrer" target="_blank">Open live demo <span aria-hidden="true">↗</span></a>}
+            {item.accessNote && <p className="project-access-note">{item.accessNote}</p>}
+          </div>
         )}
       </div>
     </div>
