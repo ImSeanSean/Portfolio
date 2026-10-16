@@ -48,8 +48,8 @@ export default function HomePage() {
           <ResumeDownload className="button button-secondary">Download Resume</ResumeDownload>
         </div>
         <ul aria-label="Selected proof points" className="hero-proof">
-          <li><strong>3</strong><span>hands-on roles</span></li>
-          <li><strong>9</strong><span>documented projects</span></li>
+          <li><strong>9+</strong><span>people &amp; teams I&apos;ve worked with</span></li>
+          <li><strong>32+</strong><span>projects &amp; systems</span></li>
           <li><strong>Magna Cum Laude</strong><span>Computer Science</span></li>
         </ul>
         <div aria-label="Professional links" className="hero-links">
