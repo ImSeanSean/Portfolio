@@ -22,9 +22,52 @@ h1, h2, h3, h4 { font-weight: 700; }
 
 body {
   @apply bg-canvas text-white font-body overflow-x-hidden;
+  isolation: isolate;
+  position: relative;
   background-image: linear-gradient(rgba(255, 77, 90, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 77, 90, .05) 1px, transparent 1px);
   background-size: 2rem 2rem;
   color-scheme: dark;
+}
+
+/* A fixed, decorative signal field adds quiet systems motion without affecting layout or input. */
+body::before, body::after {
+  content: "";
+  inset: -8%;
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
+}
+
+/* These paths and nodes are the static equivalent for reduced-motion users. */
+body::before {
+  background-image:
+    linear-gradient(118deg, transparent 0 21%, rgba(255, 77, 90, .12) 21.1% 21.24%, transparent 21.38% 44%, rgba(255, 77, 90, .08) 44.1% 44.22%, transparent 44.36% 71%, rgba(255, 77, 90, .11) 71.1% 71.24%, transparent 71.38%),
+    linear-gradient(64deg, transparent 0 29%, rgba(255, 255, 255, .045) 29.1% 29.2%, transparent 29.32% 62%, rgba(255, 77, 90, .07) 62.1% 62.22%, transparent 62.35%),
+    radial-gradient(circle at 14% 27%, rgba(255, 77, 90, .38) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 79% 34%, rgba(255, 77, 90, .3) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 67% 78%, rgba(255, 77, 90, .28) 0 1px, transparent 1.7px);
+  opacity: .72;
+  animation: ambient-field-breathe 26s ease-in-out infinite alternate;
+}
+
+/* The second layer shifts the signal traces slowly, like a workflow pulse moving through a diagram. */
+body::after {
+  background-image:
+    linear-gradient(108deg, transparent 0 37%, rgba(255, 77, 90, .24) 37.12% 37.3%, transparent 37.48%),
+    linear-gradient(72deg, transparent 0 58%, rgba(255, 77, 90, .16) 58.12% 58.28%, transparent 58.46%);
+  background-size: 180% 180%;
+  opacity: .42;
+  animation: ambient-signal-flow 22s linear infinite;
+}
+
+@keyframes ambient-field-breathe {
+  0%, 100% { opacity: .56; transform: scale(1); }
+  50% { opacity: .78; transform: scale(1.012) translate3d(-.35%, .2%, 0); }
+}
+
+@keyframes ambient-signal-flow {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 18% -12%, -14% 10%; }
 }
 
 html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
@@ -372,6 +415,7 @@ h1, h2, h3 { text-wrap: balance; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  body::before, body::after { animation: none !important; }
 }
 
 /* Keep recruiter-facing actions clear while leaving social links secondary. */
