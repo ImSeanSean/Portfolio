@@ -13,14 +13,15 @@ const links = [
 
 export default function Navigation() {
   const pathname = usePathname();
+  const currentPath = pathname === "/" ? "/" : pathname?.replace(/\/$/, "");
 
   return (
     <nav className="navbar">
       <div className="buttons">
         {links.map((link) => (
           <Link
-            aria-current={pathname === link.href ? "page" : undefined}
-            className={pathname === link.href ? "active" : undefined}
+            aria-current={currentPath === link.href ? "page" : undefined}
+            className={currentPath === link.href ? "active" : undefined}
             href={link.href}
             key={link.href}
           >

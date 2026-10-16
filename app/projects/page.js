@@ -196,7 +196,10 @@ export default function ProjectsPage() {
     const track = mobileCarouselRef.current;
     if (!track) return;
 
-    track.scrollTo({ left: index * track.clientWidth, behavior: "smooth" });
+    track.scrollTo({
+      left: index * track.clientWidth,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
   };
 
   const updateMobileProjectIndex = (event) => {
@@ -223,12 +226,18 @@ export default function ProjectsPage() {
     const atFirstProject = track.scrollLeft <= 1;
     const atLastProject = track.scrollLeft >= maximumScrollLeft - 1;
 
-    if (swipeDistance > 40 && atLastProject) track.scrollTo({ left: 0, behavior: "smooth" });
-    if (swipeDistance < -40 && atFirstProject) track.scrollTo({ left: maximumScrollLeft, behavior: "smooth" });
+    const behavior = prefersReducedMotion ? "auto" : "smooth";
+    if (swipeDistance > 40 && atLastProject) track.scrollTo({ left: 0, behavior });
+    if (swipeDistance < -40 && atFirstProject) track.scrollTo({ left: maximumScrollLeft, behavior });
   };
 
-  const renderProject = (item) => (
-    <div className="split" key={item.title}>
+  const renderProject = (item, panelId) => (
+    <div
+      aria-labelledby={panelId ? `${panelId}-title` : undefined}
+      className="split"
+      id={panelId}
+      key={item.title}
+    >
       <div className="project-visual">
         {item.image ? (
           <img alt={`${item.title} project preview`} className="project-image" height={item.height} src={assetPath(`/projects/${item.image}`)} width={item.width} />
@@ -241,7 +250,7 @@ export default function ProjectsPage() {
         )}
       </div>
       <div className="details">
-        <h2>{item.title}</h2>
+        <h2 id={panelId ? `${panelId}-title` : undefined}>{item.title}</h2>
         <div className="skill-list">
           {item.skills.map(([image, name]) => {
             const [width, height] = skillImageSizes[image] ?? [1000, 1000];
@@ -268,22 +277,6 @@ export default function ProjectsPage() {
       </div>
     </div>
   );
-
-  const handleTabKeyDown = (event, index) => {
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      selectProject((index + 1) % projects.length);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      selectProject((index - 1 + projects.length) % projects.length);
-    } else if (event.key === "Home") {
-      event.preventDefault();
-      selectProject(0);
-    } else if (event.key === "End") {
-      event.preventDefault();
-      selectProject(projects.length - 1);
-    }
-  };
 
   return (
     <div className="projects-page snap-scroll" ref={projectsPageRef}>
@@ -315,7 +308,7 @@ export default function ProjectsPage() {
       </section>
       <section aria-label="Projects carousel" className="projects-carousel-section snap-section" role="region">
       <div className="slider projects-slider-desktop">
-        {renderProject(project)}
+        {renderProject(project, "selected-project")}
         <button aria-label="Previous project" className="slider-control previous" onClick={() => changeProject(-1)} type="button">&#10094;</button>
         <button aria-label="Next project" className="slider-control next" onClick={() => changeProject(1)} type="button">&#10095;</button>
         <div className="slider-footer">
@@ -324,12 +317,12 @@ export default function ProjectsPage() {
             <div aria-label="Choose a project" className="slide-picker" role="group">
               {projects.map((item, index) => (
                 <button
+                  aria-controls="selected-project"
                   aria-label={`Show ${item.title}`}
                   aria-pressed={index === projectIndex}
                   className={index === projectIndex ? "active" : undefined}
                   key={item.title}
                   onClick={() => selectProject(index)}
-                  onKeyDown={(event) => handleTabKeyDown(event, index)}
                   type="button"
                 />
               ))}
@@ -352,12 +345,13 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-      <div className="projects-mobile-carousel" onScroll={updateMobileProjectIndex} onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart} ref={mobileCarouselRef}>
-        {projects.map(renderProject)}
+      <div aria-label="Project details" className="projects-mobile-carousel" id="mobile-project-carousel" onScroll={updateMobileProjectIndex} onTouchEnd={wrapCarouselSwipe} onTouchStart={recordCarouselSwipeStart} ref={mobileCarouselRef}>
+        {projects.map((item, index) => renderProject(item, `mobile-project-${index}`))}
       </div>
       <div aria-label="Choose a project" className="projects-mobile-picker slide-picker" role="group">
         {projects.map((item, index) => (
           <button
+            aria-controls={`mobile-project-${index}`}
             aria-label={`Show ${item.title}`}
             aria-pressed={index === mobileProjectIndex}
             className={index === mobileProjectIndex ? "active" : undefined}
