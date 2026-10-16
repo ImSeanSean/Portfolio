@@ -76,11 +76,23 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 .skip-link:focus-visible { @apply translate-y-0; }
 
 .navbar {
-  @apply flex h-[6vh] items-center justify-end border-b border-b-white/16 bg-[rgba(39,39,39,.92)] text-base;
+  @apply grid h-[6vh] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-[clamp(1rem,3vw,3rem)] border-b border-b-white/16 bg-[rgba(39,39,39,.92)] px-[clamp(1rem,3vw,3rem)] text-base;
+}
+
+.nav-brand {
+  @apply flex items-center gap-2 text-white no-underline;
+}
+
+.nav-brand-mark {
+  @apply inline-flex h-7 w-7 items-center justify-center border border-accent font-mono text-xs font-bold tracking-[-.08em] text-accent;
+}
+
+.nav-brand-name {
+  @apply font-mono text-xs font-bold tracking-[.08em] uppercase;
 }
 
 .buttons {
-  @apply mr-[3vw] flex gap-[2vw];
+  @apply flex justify-center gap-[clamp(.75rem,2vw,2rem)];
 }
 
 .buttons a, .buttons button, .contact {
@@ -89,6 +101,8 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 
 .buttons button { @apply cursor-pointer border-0 bg-transparent font-[inherit]; }
 .buttons a:hover, .buttons button:hover, .buttons .active, .contact:hover { @apply text-accent; }
+.nav-cta { @apply border border-accent bg-accent px-3 py-2 font-mono text-xs font-bold tracking-[.04em] text-canvas no-underline transition-[background-color,color] duration-200 ease-in-out; }
+.nav-cta:hover { @apply bg-accent-hover text-canvas; }
 
 .home-page, .contact-page, .about-page, .projects-page {
   @apply mx-auto flex flex-col items-center;
@@ -309,8 +323,10 @@ h1, h2, h3 { text-wrap: balance; }
 }
 
 @media (max-width: 768px) {
-  .navbar { height: auto; justify-content: center; min-height: 3rem; position: sticky; top: 0; z-index: 4; }
-  .buttons { gap: clamp(.5rem, 2.8vw, 1.1rem); margin-right: 0; padding: .8rem .75rem; }
+  .navbar { grid-template-areas: "brand cta" "links links"; grid-template-columns: minmax(0, 1fr) auto; height: auto; min-height: 3rem; padding-bottom: .75rem; padding-top: .75rem; position: sticky; top: 0; z-index: 4; }
+  .nav-brand { grid-area: brand; }
+  .nav-cta { grid-area: cta; }
+  .buttons { flex-wrap: wrap; gap: .55rem 1rem; grid-area: links; justify-content: flex-start; padding-top: .25rem; }
   .home-page h1 { text-align: center; }
   .information, .split { grid-template-columns: 1fr; flex-direction: column; }
   .information { display: flex; }

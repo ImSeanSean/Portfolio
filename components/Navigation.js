@@ -16,7 +16,11 @@ export default function Navigation() {
   const currentPath = pathname === "/" ? "/" : pathname?.replace(/\/$/, "");
 
   return (
-    <nav className="navbar">
+    <nav aria-label="Primary navigation" className="navbar">
+      <Link aria-label="Sean Rad P. Alberto home" className="nav-brand" href="/">
+        <span aria-hidden="true" className="nav-brand-mark">SR</span>
+        <span className="nav-brand-name">Sean Alberto</span>
+      </Link>
       <div className="buttons">
         {links.map((link) => (
           <Link
@@ -30,6 +34,9 @@ export default function Navigation() {
         ))}
         <ResumeDownload>Resume</ResumeDownload>
       </div>
+      <Link className="nav-cta" href="/contact">
+        Let&apos;s Connect <span aria-hidden="true">↗</span>
+      </Link>
     </nav>
   );
 }
