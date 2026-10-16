@@ -18,7 +18,7 @@ export default function Navigation() {
   return (
     <nav aria-label="Primary navigation" className="navbar">
       <Link aria-label="Sean Rad P. Alberto home" className="nav-brand" href="/">
-        <span aria-hidden="true" className="nav-brand-mark">SR</span>
+        <img alt="" aria-hidden="true" className="nav-brand-logo" height="32" src="/sr-logo.png" width="48" />
         <span className="nav-brand-name">Sean Alberto</span>
       </Link>
       <div className="buttons">

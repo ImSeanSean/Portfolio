@@ -83,9 +83,7 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
   @apply flex items-center gap-2 text-white no-underline;
 }
 
-.nav-brand-mark {
-  @apply inline-flex h-7 w-7 items-center justify-center border border-accent font-mono text-xs font-bold leading-none tracking-[-.04em] text-accent;
-}
+.nav-brand-logo { @apply block h-7 w-12 object-contain; mix-blend-mode: screen; }
 
 .nav-brand-name {
   @apply font-mono text-xs font-bold tracking-[.08em] uppercase;
