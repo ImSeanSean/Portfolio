@@ -84,7 +84,7 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
 }
 
 .nav-brand-mark {
-  @apply inline-flex h-7 w-7 items-center justify-center border border-accent font-mono text-xs font-bold tracking-[-.08em] text-accent;
+  @apply inline-flex h-7 w-7 items-center justify-center border border-accent font-mono text-xs font-bold leading-none tracking-[-.04em] text-accent;
 }
 
 .nav-brand-name {
@@ -108,7 +108,7 @@ html { -webkit-tap-highlight-color: rgba(255, 77, 90, .25); }
   @apply mx-auto flex flex-col items-center;
 }
 
-.home-page { @apply relative flex h-[90vh] w-[80vw] max-w-[68rem] justify-center gap-[1.1rem] py-8 text-center; }
+.home-page { @apply relative flex h-[90vh] w-[80vw] max-w-[68rem] justify-center gap-[1.1rem] pb-8 text-center; padding-top: clamp(4rem, 8vh, 6rem); }
 .home-page h1, .contact-page h1, .section-heading h1 { @apply font-heading text-[clamp(2.6rem,6vw,5rem)] leading-[.95] tracking-[-.055em] text-accent; }
 .home-page h1 { @apply max-w-[58rem]; }
 .home-intro { @apply font-mono text-xs tracking-[.12em] text-copy-muted uppercase; }
