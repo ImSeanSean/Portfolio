@@ -1,4 +1,5 @@
 const assetPath = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+const workflowEmailHref = "mailto:seanradalberto@gmail.com?subject=Role%20or%20workflow%20conversation";
 
 const professionalContacts = [
   { image: "4.png", label: "Email Sean", detail: "seanradalberto@gmail.com", href: "mailto:seanradalberto@gmail.com" },
@@ -16,8 +17,11 @@ export default function ContactPage() {
     <section className="contact-page">
       <div className="section-heading contact-heading">
         <p className="eyebrow">Get in touch</p>
-        <h1>Let&apos;s Connect</h1>
-        <p className="contact-intro">I&apos;m open to software engineering opportunities focused on AI systems, automation, and full-stack development.</p>
+        <h1>What is your team still doing by hand?</h1>
+        <p className="contact-intro">Tell me what is repetitive, scattered, or difficult to track. I build AI-assisted, automated, and full-stack systems that make this kind of work easier to run—whether you&apos;re hiring or improving a workflow.</p>
+        <div className="hero-actions contact-heading-actions">
+          <a className="button button-primary" href={workflowEmailHref}>Email about a role or workflow <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
       <section aria-labelledby="professional-contact-heading" className="contact-group">
         <h2 id="professional-contact-heading">Professional contact</h2>
